@@ -1,0 +1,22 @@
+// 全局变量
+package protoc.global_var;
+
+
+enum GLOBAL_VARIABLE
+{
+	MAX_NET_PACKET_SIZE 							    = 65536; 	//普通一个网络包的最大长度
+	MAX_LARGE_NET_PACKET_SIZE 							= 512000; // 比较大一个网络包的最大长度（dbserver 和 gameserver 通信也会会达到这么大的一个包）
+	MAX_SERVER_ID_LEN 								    = 32; 		// 服务器id长度
+	MAX_ACCOUNT_LEN 									= 64; 		// 帐号最大长度
+	MAX_SESSION_KEY_LEN 								= 64;			// 回话密钥的最大长度
+	MAX_PLAYER_NAME_LEN 								= 32; 		// 玩家个性化名称最大长度
+	MAX_PLAYER_MSG_CONTENT_LEN 							= 64;			// 玩家消息内容最大长度	
+	
+	E_MAIL_CONTENT_MAX_LEN                              = 540; //邮件内容最大长度
+	E_MAIL_TITLE_MAX_LEN                                = 60; //邮件主题的最大长度
+	E_MAIL_AWARD_MAX_LEN                                = 255; //邮件奖励的最大长度
+}
+
+
+
+

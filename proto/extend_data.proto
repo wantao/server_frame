@@ -1,0 +1,39 @@
+package extend_data;
+
+/// 最多支持 255 个版本
+enum extend_data_version
+{
+	V1 = 1; //第一版本
+}
+
+
+// 玩家属性扩展数据
+// 第一个存储版本
+message extend_data_v1
+{	
+  optional int32	today_error_input_award_key_num=1; //今天领取奖励错误码输入错误次数
+  optional int64	new_day_time=2; //记录触发新的一天事件的时刻
+  optional bool		today_login_log=3; //今天登陆记录是否已经记录了
+  optional int32    today_send_email_num=4;//今天发送邮件次数
+  optional int32    today_ask_friend_num=5; //今日申请好友次数
+  optional int64    last_get_action_count_time=6; //最后一次补充行动力的时刻
+  optional int32    today_buy_action_count_times=7; //今日购买补充行动力次数
+}
+
+
+// 对象的buffer数据
+message state_v1
+{
+  optional uint32 id=1;//buffer id
+  optional uint64 end_time=2; //结束时间
+  optional uint64 res1=3; //自定义值1
+  optional uint32 res2=4; //自定义值2
+  optional uint32 res3=5; //自定义值3
+}
+
+// buffer 列表
+message state_list_v1
+{
+  repeated state_v1 state_list=1;
+}
+

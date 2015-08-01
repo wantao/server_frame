@@ -1,0 +1,151 @@
+package protoc.gameserver_gate;
+
+// game server 报告 gs 信息
+message CGameServerReport
+{
+	optional string  id=1;
+	optional string  name=2;
+	optional int32   online_number=3;
+}
+
+// gate server 报告给 gameserver 
+message CGateServerReport
+{
+	optional string  id=1;
+	optional string  name=2;
+}
+
+// gate 转发 client 消息到 gs 
+message CGateTransClientMsg
+{
+	optional	uint32  client_session_id=1;
+	optional	bytes	msg=2;
+}
+
+// gate 转发 gs 消息到 client
+message CGateTransGameServerMsg
+{
+	optional	uint32  client_session_id=1;
+	optional	bytes	msg=2;
+}
+
+// gate 转告gameserver 有新的用户进入游戏
+message NewPlayerEnterGameReq
+{
+	optional	uint32  client_session_id=1;
+	optional	uint32  remote_ip=2;
+	optional	uint32  remote_port=3;
+	optional	string	gate_id=4;
+  optional	string  account=5;
+	optional	uint64  playerid=6;
+	optional  int32   switch_gs=7;
+	optional 	int32   platform_id=8; // 平台id
+}
+
+message NewPlayerEnterGameAck
+{
+	optional	uint32  client_session_id=1;
+	optional	int32  	error_code=2;
+}
+
+message PlayerTerminateGateRpt
+{
+	optional	uint32  client_session_id=1;
+}
+
+message KickOutPlayerRpt
+{
+	optional	uint64  digit_account=1;
+	optional	uint32  session_id=2;
+	optional  int32  	error_code=3;
+}
+
+message CRandCheckReq
+{
+	optional bytes   randkeys=1;
+}
+
+message CRandCheckAck
+{
+	optional bytes   keys=1;
+}
+
+message CHeartPing
+{
+	optional int32 		opt=1;
+}
+
+message CHeartPingAck
+{
+	optional int32 		opt=1;
+}
+
+// gs 告诉 gate 目标玩家切换 gs
+message PlayerSwitchGSReq
+{
+  optional	uint64  digit_account=1;
+  optional	uint32  client_session_id=2;
+  optional	string	gs_id=3;
+  optional 	int32  	platform_id=4; // 平台id
+}
+
+message PlayerSwitchGSAck
+{
+  optional	uint64  digit_account=1;
+  optional	uint32  client_session_id=2;
+  optional	string	gs_id=3;
+  optional int32 		err_no=4;
+}
+
+message PlayerReLoginReq
+{
+  optional	uint64  digit_account=1;
+  optional	uint32  client_session_id=2;
+  optional	string	gs_id=3;
+}
+
+message PlayerReLoginAck
+{
+  optional	uint64  digit_account=1;
+  optional	uint32  client_session_id=2;
+  optional	string	gs_id=3;
+  optional int32 		err_no=4;
+}
+
+// gs告诉gate 关闭
+message GateCloseNtf
+{
+}
+
+// 告诉gate,将要有一个新用户进入, 准备分配回话
+message login_gt_req
+{
+	optional uint64 playerid=1;
+	optional string account=2;
+	optional uint32 old_sessionid=3; // 如果还有老的回话,则这个就是老回话的id
+}
+
+message login_gt_ack
+{
+	optional uint64 playerid=1;
+	optional string gate_ip=2;
+	optional int32  gateport=3; // gate server port
+	optional int32  gate_key=4;
+	optional int32  err_no=5; 
+}
+
+// gate 定时向 gs 报告当前client 连接的数量
+message client_number_rpt
+{
+	optional	uint32  number=1;
+	optional  string  gate_id=2;
+}
+
+// 将要进入 gate 的client登入超时, gt 告诉 gs, 让 gs 做超时处理
+message client_login_gate_time_out_rpt
+{
+	optional uint64 playerid=1;
+}
+
+
+

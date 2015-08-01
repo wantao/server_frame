@@ -1,0 +1,1996 @@
+package protoc.gameproto;
+import "options.proto";
+
+// 协议包描述:
+// 不需要加密的情况: 			[packet len](4 byte) + [id](2 byte) + [body]
+// 需要加密的情况:   
+// 			客户端发送服务器: [packet len](4 byte) + [index](2 byte) + [id](2 byte) + [body] ; index 到 body 这个区间是加密的范围
+// 			服务器发给客户端: [packet len](4 byte) + [id](2 byte) + [body] ; index 到 body 这个区间是加密的范围
+
+// 正常登录gate
+message ClientLoginGateReq
+{
+	required uint64 	  digit_account=1;  // 游戏唯一通行证
+	required string 	  str_account=2;		// user id
+	optional string   	  login_gate_key=3;	// md5(str(ClientLoginAck::gate_key)+'&'+str(ClientLoginAck::digit_account)) 全小写
+	optional string		  opt=4;   	  			// 其他
+}
+
+// 返回登录结果
+// (特别注意,客户端发送了ClientLoginGateReq后,必须要等待ClientLoginGateAck后,才能发送后续协议)
+// 注意是否要加密. 如果需要加密,后面发送的协议,协议id前面增加两个字节,表示包的序号. 从1开始,
+// 客户端每次发送后自增1. 如果与服务器断开连接则复位.
+message ClientLoginGateAck
+{
+	required int32  err_no=1;
+	optional int32	coding_id=2;   	  			// 后面通信协议加密算法的id(如果 coding_id=0 表示不需要加密)
+}
+
+// 断线重连的请求 (发送这个协议,不需要加密)
+message ClientLoginAgainGateReq
+{
+	required uint64 	  digit_account=1;  // 游戏唯一通行证
+	required string 	  str_account=2;		// user id
+	optional string   	  login_gate_key=3;	// md5(str(ClientLoginAck::gate_key)+'&'+str(ClientLoginAck::digit_account)) 全小写
+}
+
+// 断线重连的返回
+// (特别注意,客户端发送了ClientLoginAgainGateReq后,必须要等待ClientLoginAgainGateAck后,才能发送后续协议)
+// 注意是否要加密. 如果需要加密,后面发送的协议,协议id前面增加两个字节,表示包的序号. 从1开始,
+// 客户端每次发送后自增1. 如果与服务器断开连接则复位.
+message ClientLoginAgainGateAck
+{
+	required int32  err_no=1;
+	optional int32	coding_id=2;   	  			// 后面通信协议加密算法的id(如果 coding_id=0 表示不需要加密)
+}
+
+
+message ClientLeaveGameReq
+{
+	required int32  	leave_type=3;
+}
+
+message ClientLeaveGameAck
+{
+	required int32  err_no=1;
+}
+
+message SysErrorNtf
+{
+	required int32  err_no=1;
+}
+
+// 发送到客户端的心跳
+message KeepClientAlive
+{
+}
+
+message KeepClientAliveAck
+{
+}
+
+
+
+message TestReq
+{
+	optional double  t_double=1;
+	optional float   t_float=2;
+	optional int32   t_int32=3;
+	optional int64   t_int64=4;
+	optional uint32	 t_uint32=5;
+	optional uint64  t_uint64=6;
+	optional sint32  t_sint32=7;
+	optional sint64  t_sint64=8;
+	optional bool    t_bool=9;
+	optional string  t_string=10;
+	optional bytes	 t_bytes=11;
+}
+
+message TestAck
+{
+	optional double  t_double=1;
+	optional float   t_float=2;
+	optional int32   t_int32=3;
+	optional int64   t_int64=4;
+	optional uint32	 t_uint32=5;
+	optional uint64  t_uint64=6;
+	optional sint32  t_sint32=7;
+	optional sint64  t_sint64=8;
+	optional bool    t_bool=9;
+	optional string  t_string=10;
+	optional bytes	 t_bytes=11;
+}
+
+// 玩家基本数据
+message PlayerBaseData
+{
+	optional	string  playername	=1;	//名称
+	optional    uint32  vip_level 	=2; //vip 等级
+	optional 	int32 	area_id 		=3; //区号
+	optional    uint32  head_pic_id =4; // 头像id
+    optional    bool    sex=5; //性别
+	optional	uint32  exp=6;			     	//声望，经验
+	optional	uint32  gold=7;					//金
+	optional	uint32  level=8;					//当前等级
+	optional    uint32  action_count=9;    //行动力
+	optional	uint32  spirit=10;					//精神力
+	optional    uint32  hp=11;  //
+	optional    uint32  mp=12; //
+	optional    uint32  yuan_bao=13; //宝石
+	optional    int32   gmlevel=14; // 0表示普通玩家, 大于1表示gm
+	optional    uint32  cur_queue_id=15; //当前队列ID
+	optional    int32   friend_ship=16; //友情点
+    optional    bool not_ask_friend = 17; //是否能申请好友 false可以 true不行
+	optional    bool today_first_login=18; //是否是今日第一次登录 
+}
+
+// 普通文本消息
+message MsgNodeText
+{
+  optional string   text=1;
+}
+
+// 唯一ID 64唯一
+message UniqueID
+{
+  optional uint64   id=1; 
+}
+
+// 聊天类型标识
+enum CHAT_MSG_TYPE
+{
+    E_PRIVATE_TALK=0; //私聊
+    E_UNION_TALK = 1; //联盟聊天
+    E_WORLD_TALK = 2; //世界聊天
+}
+
+// 消息节点 类型 标识
+enum CHAT_MSG_NODE_TYPE
+{
+  E_TEXT = 0; //普通文本消息段    (message MsgNodeText)
+  E_PLAYER_ID_NAME =1 ; //玩家的id与名称 (message MsgNodePlayerIDName)
+  
+  
+  E_PRIORITY = 16;//消息的优先级(message Priority)
+  E_REPEAT_COUNT = 17;//消息的重复次数(message RepeatCount)
+  E_RONGHUN_KIND = 18;
+}
+
+//优先级
+message Priority
+{
+	optional uint32   pri=1; 
+}
+
+//重复次数
+message RepeatCount
+{
+	optional uint32   count=1; 
+}
+
+// 玩家的 ID 与 名称 对
+message MsgNodePlayerIDName
+{
+    optional uint64   id=1; 
+    optional string   name=2;
+}
+
+// 消息节点
+message MessageRepeateNode
+{
+	repeated MessageNode      nodes=1; //节点内容
+}
+
+// 消息节点
+message MessageNode
+{
+	optional CHAT_MSG_NODE_TYPE node_type=1; //节点类型
+	optional bytes  data=2; //节点内容
+}
+
+// 发送聊天信息
+message ChatRpt
+{
+	optional CHAT_MSG_TYPE    msg_type=1; //消息类型
+	optional string           msg=2;  //聊天消息(兼容性保留字段) 例如发送GM 消息，只要 填写 msg 就可以了，不需要 构造节点
+	optional uint64           to_playerid=3; //消息接收者的id
+	optional string           to_playername=4; //消息接受者的名称
+	repeated MessageNode      nodes=5; //节点内容
+}
+
+// 聊天通知（广播）
+message ChatNtf
+{
+	optional CHAT_MSG_TYPE    msg_type=1; //消息类型
+	repeated MessageNode      nodes=2; //节点内容, 客户端把节点内容依次表现
+	optional int32            err_no=3;//错误码
+}
+
+
+// gameserver 广播到其他服务器 聊天通知(服务器之间的内部通信)
+message GSChatNtf
+{
+	optional CHAT_MSG_TYPE    msg_type=1; //消息类型
+	optional uint64           playerid=2; //发起这个消息的玩家id
+	optional uint64           to_playerid=3; //消息接收者的id
+	optional string           to_playername=4; //消息接受者的名称
+	repeated MessageNode      nodes=5; //节点内容, 客户端把节点内容依次表现
+}
+
+// 系统消息
+message GSSystemMessageNtf
+{
+	optional SYSTEM_MSG_TYPE  msg_type=1 [default = E_NORMALL_MSG]; //系统广播的系统消息 类型
+	optional string           msg=2; //消息内容
+	repeated MessageNode      nodes=3; //节点内容, 客户端把节点内容依次表现
+}
+
+// 系统消息类型标识
+enum SYSTEM_MSG_TYPE
+{
+	E_NORMALL_MSG=0; //普通系统消息。给玩家的一些提示。
+	E_GM_MSG = 1; //GM 发送的系统消息。
+	E_PLAYERTOALL_MSG = 2;//玩家个人的系统消息给所有人的通告
+	E_PAOMADENG_MSG = 3;//跑马灯系统公告
+	E_GM_Urgent_Msg = 4;//系统临时性公告
+	E_POP_NORMAL_MSG = 5; //弹出的普通系统消息
+}
+
+// 系统消息
+message SystemMessage
+{
+	optional SYSTEM_MSG_TYPE  msg_type=1 [default = E_NORMALL_MSG]; //系统广播的系统消息 类型
+	optional string           msg=2; //消息内容
+	repeated MessageNode      nodes=3; //节点内容, 客户端把节点内容依次表现
+	optional bool							is_my_msg=4; //我消息,非转发的
+}
+
+// 执行GM命令的结果
+message GMExecuteResult
+{
+	optional int32   err_no=1;
+	optional string  msg=2;
+}
+
+
+// 特效类型
+enum TEXIAO_TYPE
+{
+  e_default_texiao=0; //默认特效类型
+  e_jinyingdai_texiao=1; //金袋银银袋特效类型
+  e_show_li_bao = 2;//展现礼包特效
+}
+
+// 特效里显示的元素
+message TeXiaoItem
+{
+  enum ITEM_TYPE
+  {
+	AWARD_EXP=1;//# 声望奖励标识 EXP
+	AWARD_GOLD=2;//# 金币奖励表示
+	AWARD_YUAN_BAO =3; //奖励元宝
+	AWARD_PET=4; //奖励宠物
+	AWARD_ACTION_COUNT=5; //奖励行动力
+	AWARD_FRIENDSHIP=6; // 友情点
+	AWARD_EQUIP=7; //装备
+	AWARD_RANDOM_PET=8; //随机宠物卡
+	AWARD_RANDOM_EQUIP=9; //随机装备
+	AWARD_GOODS=10; //物品
+  }
+  
+  optional ITEM_TYPE  itemtype=1; // 奖励类型
+  optional int32      id=2; //如果是道具，这个id则表示道具的id，或者武将卡的id
+  optional int32      number=3;// 数量
+  optional int32      level=4; //如果有等级,则表示等级
+}
+
+// 特效效果
+message TeXiao
+{
+	optional	TEXIAO_TYPE  type=1;					//特效类型
+	repeated  TeXiaoItem   item=2;          //特效里物品描述
+}
+
+//通知特效效果
+message TeXiaoTypeNtf
+{
+	optional	TeXiao  texiao=1;					//特效效果
+}
+
+message GetKeyAwardReq
+{
+  optional string   key=1; //领取奖励校验码
+}
+
+message GetKeyAwardAck
+{
+  optional int32 err_no=1; //错误码
+}
+
+
+
+// 服务器告诉client，玩家需要创建自己个性化名称
+message NeedCreatePlayerName
+{
+}
+
+// 客户端请求创建个性化名称 和 选择好 头像
+message CreatePlayerNameReq
+{
+	required string   newname=1; // 想要使用的名称
+	optional   uint32   head_pic_id=2; //选择的头像id
+	optional   bool  sex=4; //选择性别 false男  true女
+}
+
+message CreatePlayerNameAck
+{
+	required int32    err_no=1; //创建名称和选择头像的结果
+}
+
+
+
+//商城返回系列协议///////////////////////////////////////////////////////////////////////////////
+// 商城出售的道具
+message ShangChengGoods
+{
+  optional uint32 id=1;//物品的编号
+  optional uint32 kind=2;//物品类型
+  optional uint32 price=3;//出售价格（实价）
+  optional uint32 price_1=4;//参考价格（原价）
+  optional int64  end_time=5;//道具出售剩余时间，单位秒, 如果值为 -1, 表示没有活动时间限制的道具，>=0 表示获得道具剩余时间
+  optional int32  limit_number=6; //今天限购次数
+  optional int32  sell_type=7; // 购买货币类型 seltype = 0 使用金够买, 1 使用元宝购买（腾讯元宝）,2 使用点券购买
+  optional int32  percent=8;//打折扣百分比
+}
+
+// 商城面板里一个页签
+message LabelShangChengGoods
+{
+  optional string label_name = 1; //页签
+  repeated ShangChengGoods sellgoodslist=2; //商店物品列表
+}
+
+// 取得商城道具列表
+message GetShangChengGoodsListAck
+{
+  optional uint32 shop_id = 1; //商店id
+  repeated LabelShangChengGoods labels=2; //商店物品列表
+}
+
+// 取得商城道具列表
+message GetShangChengGoodsListReq
+{
+}
+////////////////////////////////////////////////////////////////////////////////////
+
+
+// 对话窗户窗口类型
+enum CommonDialogType
+{
+  E_ONLY_OK_BTN=1; //仅仅只有一个确定按钮
+  E_BOTH_OK_CANCEL=2; //有确定和取消按钮
+  E_BOTH_OK_CANCEL_INPUT=3; //有确定和取消按钮 且 还有一个输入文本框
+}
+
+// 通用对话窗口协议
+message CommonDialog
+{
+  option (as3_amf_alias) = "protoc.gameproto.CommonDialog";
+	option (as3_bindable) = true;
+	
+	optional int32              dlg_id=1; // 对话窗口id
+	optional CommonDialogType   dlg_type=2; // 对话窗口类型
+	optional int32              dlg_return=3; //返回 选择 （0：确定，1：取消）
+	optional string             output_text=4; //输出内容
+	optional string             input_text=5; //输入内容
+	optional int32              r32_1=6; // 要返回值32位整数值
+	optional int32              r32_2=7; // 要返回值32位整数值
+	optional uint64             r64_1=8; // 要返回值64位无符号整数值
+}
+
+
+// 领取GM发送奖励
+message GetGMAward
+{
+}
+
+message GetGMAwardAck
+{
+  optional  int32  err_no=1;
+}
+
+
+// 更新Exp
+message UpdateExp
+{
+  required	uint32  exp=1;	
+}
+
+// 更新Gold
+message UpdateGold
+{
+  required	uint32  gold=1;	
+}
+
+// 更新等级
+message UpdateLevel
+{
+  required	uint32  id=1;	
+}
+
+// 更新玩家元宝数量
+message UpdateYuanBao
+{
+	required  uint32  yuan_bao=1; //元宝值
+}
+
+enum PET_POSITION
+{
+    e_pet_in_group=0;        //0：在培养包裹中
+    e_pet_in_sell=1;         //1：寄售中
+}
+
+// 宠物数据
+message PetRecord
+{
+	optional  uint64            qwid = 1; //宠物唯一id
+	optional  uint32            pet_id=2;   // 所属宠物的ID
+	optional  PET_POSITION      position=3;  //宠物所处的位置   
+    optional uint32             bind = 4;  //是否绑定  1=绑定的，0=不绑定或没有绑定
+	optional uint32             recover=5;           //宠物的回复力
+	optional float              dps=6;             //宠物的秒伤
+	optional uint32             hp=7;               //宠物的hp
+	optional uint32             level=8;           //宠物等级
+	optional uint32             exp=9;             //宠物经验
+	optional uint32             action_skill=10;    //主动技能
+	optional uint32             leader_skill=11;    //队长技能
+	repeated uint32             passive_skill=12;    //可习得被动技能
+	optional int64              create_time = 13;    //创建时间
+	optional uint32             protect=14;          //是否保护 1保护 0非保护
+	optional uint32             skill_level=15;      //主动技能等级
+	repeated uint64             equip_id = 16;       //装备唯一ID
+	optional bool               new_state = 17;      //新的状态 false:新的没查看  true:查看过了
+	optional uint32             pvp_number = 18;     //只用于pvp战斗时(平时为0);
+}
+
+// 签名算法: 把要签名的数据转换成字符串, 然后对这个字符做md5 (16个字节) 按字节存放
+// 然后用这个md5值与 一个 key 按为异或. 
+// 带有对重要数据签名的宠物数据结构
+message PetRecordSIGN
+{
+	optional uint64             qwid = 1;   //宠物唯一id	
+	optional bytes              sign_pet_id=2; // 
+	optional bytes              sign_recover=3;
+	optional bytes              sign_dps=4;// 
+	optional bytes              sign_hp=5;//
+	optional bytes              sign_action_skill=6;// 
+	optional bytes              sign_leader_skill=7;//
+	optional bytes              sign_skill_level=8;//
+	optional bytes              sign_mp=9;// 
+	optional bytes              sign_spirit=10;// 
+}
+
+
+// 增加一个宠物
+message AddPet
+{
+	optional PetRecord pet=1;
+}
+
+// 删除一个宠物
+message DelPet
+{
+	optional uint64 id=1;
+}
+
+// 修改一个宠物的数据
+message UpdatePet
+{
+	optional PetRecord pet=1;
+}
+
+// 宠物数据
+message PetList
+{
+	repeated	PetRecord talbe=1;
+}
+
+
+//消息系统数据	
+message SystemData
+{
+ optional uint64 msg_id = 1;//消息id
+ optional uint32 msg_type = 2;//消息类型  0:非奖励邮件 1:好友邮件 2:可领奖邮件
+ optional string send_name = 3;//发件人
+ optional string title = 4;//邮件主题
+ optional bool   read_flag = 5;//是否已读
+ optional int64  msg_time = 6;//消息时间 
+ optional string award = 7; //奖励
+ optional uint32 last_days = 8; //邮件剩余天数
+ optional string content = 9; //邮件内容
+}
+
+// 发送读取全部消息
+message GetAllSysMsgReq
+{
+}
+
+message GetAllSysMsgAck
+{
+  repeated SystemData sysmsg = 1;//系统消息
+}
+
+// 删除邮件
+message DeleteSysMsgReq
+{
+  repeated uint64 msg_ids = 1;//邮件唯一ID
+}
+
+message DeleteSysMsgAck
+{
+  optional int32 err_no = 1;//错误码
+}
+
+// 发送邮件
+message SendSysMsgReq
+{
+  optional  string player_name = 1;//发送的玩家名字
+  optional  string theme = 2;//邮件主题 
+  optional  string content =3;//邮件内容
+  optional  uint64 playerid = 4;//玩家id(默认为0,可不填)
+}
+
+message SendSysMsgAck
+{
+  optional int32 err_no = 1; //错误码
+}
+
+// 读取邮件
+message ReadSysMsgReq
+{
+  optional uint64 msg_id=1;//邮件唯一ID
+}
+
+message ReadSysMsgAck
+{
+  optional uint64 msg_id=1;//邮件唯一ID
+  optional string content = 2;//邮件内容
+}
+
+// 领取邮件奖励
+message GetEmailAwardReq
+{
+  optional uint64 msg_id=1;//邮件唯一ID
+}
+
+message GetEmailAwardAck
+{
+  optional uint64 msg_id=1;//邮件唯一ID
+  optional int32 err_no =2;//错误码
+}
+
+//一键领取邮件奖励
+message OneKeyGetEmailAwardReq
+{
+  repeated uint64 msg_id=1;//邮件唯一ID(前端发送过来的id不包括可以随机奖励物品的id)
+}
+
+//邮件消息通知
+message EmailMessageNtf
+{
+}
+
+
+// 保护宠物
+message ProtectPetReq
+{
+  optional uint64 pet_id=1;//宠物唯一ID
+}
+
+// 保护宠物
+message ProtectPetAck
+{
+  optional uint64 pet_id=1;//宠物唯一ID
+  optional int32  err_no=2;//
+}
+
+// 卖宠物给系统
+message SellPetToSysReq
+{
+  repeated uint64 pet_ids=1;//宠物唯一ID
+}
+
+// 卖宠物给系统
+message SellPetToSysAck
+{
+  repeated uint64 pet_ids=1;//宠物唯一ID
+  optional int32  err_no=2;//
+}
+
+//编队里的一条记录
+message PetInBianDui
+{
+	optional uint64 pet_id=1;   //宠物id
+	optional uint32 idx=2;      //宠物所在阵形相对坐标系中的下标[0,x]
+	optional uint32 number=3;   //竞技编队出战数量
+}
+
+//一个编队里的数据
+message BianDuiData
+{
+	optional uint32       index=1; //编队序号 [0, 1, ...] 0 是冒险编队，大于0 是竞技编队
+	optional string       name=2; //编队名字
+	optional uint64       admin_pet_id=3; //统帅id
+	repeated PetInBianDui pet=4; //编入队伍中的武将
+	optional int32        total_attack=5; //编队总战斗力
+	optional bool         state=6; //状态 false没状态 true有状态
+}
+
+
+//所有编队数据
+message BianDuiList
+{
+	repeated BianDuiData   data=1; //所有编队数据
+}
+
+// 提交一个编队
+message SubBianDuiReq
+{
+	optional BianDuiData   biandui=1; //编队
+}
+
+
+// 提交编队
+message SubBianDuiAck
+{
+  optional uint32 idx=1;//编队号
+  optional int32  err_no=2;//
+}
+
+// 修改编队名字
+message ModifyBianDuiNameReq
+{
+  optional string name=1;//新名字
+}
+
+// 修改编队名字
+message ModifyBianDuiNameAck
+{
+  optional string name=1;//新名字
+  optional int32  err_no=2;//
+}
+
+// 编队位置变更
+message ModifyBIanDuiDataReq
+{
+  optional uint64 pet_id_1=1;//宠物唯一ID1
+  optional uint64 pet_id_2=2;//宠物唯一ID2  
+  optional uint32 queue_idx=3;//编队序号 [0, 1, ...] 0 是冒险编队，大于0 是当前竞技编队
+}
+
+// 编队位置变更
+message ModifyBIanDuiDataAck
+{
+  optional uint64 pet_id_1=1;//宠物唯一ID1
+  optional uint64 pet_id_2=2;//宠物唯一ID2  
+  optional int32  err_no=3;//
+  optional uint32 queue_idx=4; //编队序号 [0, 1, ...] 0 是冒险编队，大于0 是当前竞技编队
+}
+
+// 编队更新
+message BianDuiNtf
+{
+  optional BianDuiData   queue=1; //编队
+}
+
+// 得到当前编队
+message AddBianDui
+{
+  optional BianDuiData   queue=1; //编队
+}
+
+// 得到当前编队
+message GetCurBianDuiReq
+{
+  optional uint32 idx=1;//编队号
+}
+
+// 得到当前编队
+message GetCurBianDuiAck
+{
+  optional BianDuiData   biandui=1; //编队
+  optional int32  err_no=2;//
+}
+
+// 设置当前竞技编队
+message SetCurBianDuiReq
+{
+  optional uint32 queue_id=1;//编队ID
+}
+
+// 设置当前竞技编队
+message SetCurBianDuiAck
+{
+  optional uint32 queue_id=1;//编队ID
+  optional int32  err_no=2;//
+}
+
+// 增加宠物到编队
+message AddPetToBianDuiReq
+{
+  optional uint64 pet_id=1;//宠物唯一ID
+  optional uint32 idx=2;//宠物位置
+  optional uint32 queue_idx=3;//编队序号 [0, 1, ...] 0 是冒险编队，大于0 是当前竞技编队
+}
+
+// 增加宠物到编队
+message AddPetToBianDuiAck
+{
+  optional uint64 pet_id=1;//宠物唯一ID
+  optional int32  err_no=2;//
+  optional uint32 queue_idx=3;//编队序号 [0, 1, ...] 0 是冒险编队，大于0 是当前竞技编队
+}
+
+// 从编队撤下一个宠物
+message DelPetToBianDuiReq
+{
+  optional uint64 pet_id=1;//宠物唯一ID
+  optional uint32 queue_idx=3;//编队序号 [0, 1, ...] 0 是冒险编队，大于0 是当前竞技编队
+}
+
+// 从编队撤下一个宠物
+message DelPetToBianDuiAck
+{
+  optional uint64 pet_id=1;//宠物唯一ID
+  optional int32  err_no=2;//
+  optional uint32 queue_idx=3;//编队序号 [0, 1, ...] 0 是冒险编队，大于0 是当前竞技编队
+}
+
+// 增加宠物上限
+message AddPetMaxNumberReq
+{
+}
+
+// 增加宠物上限
+message AddPetMaxNumberAck
+{
+  optional int32  err_no=1;//
+}
+
+// 增加编队上限
+message AddQueueMaxNumberReq
+{
+}
+
+// 增加编队上限
+message AddQueueMaxNumberAck
+{
+  optional int32  err_no=1;//
+}
+// 更新宠物上限
+message PetMaxNumberNtf
+{
+  optional uint32 number=1;//宠物上限
+}
+
+//更新编队上限
+message QueueMaxNumberNtf
+{
+  optional uint32 number=1;//编队上限
+}
+
+//更新当前编队号
+message UpdateCurBianDuiIdx
+{
+  optional uint32 idx=1;//当前编队号
+}
+
+// 恢复体力
+message RecoverActiveCountReq
+{
+}
+
+// 恢复体力
+message RecoverActiveCountAck
+{
+  optional int32  err_no=1;//
+}
+
+// 更新行动力
+message ActiveCountNtf
+{
+  optional uint32 count=1;//宠物行动力
+}
+
+// 更新精神力
+message SpiritNtf
+{
+  optional uint32 spirit=1;//宠物精神力
+}
+
+// 更新hp
+message UpdateHp
+{
+  optional uint32 hp=1;//宠物hp
+}
+
+// 更新mp
+message UpdateMp
+{
+  optional uint32 mp=1;//宠物mp
+}
+
+// 出售的商品
+message GoodsOfSell
+{
+  optional uint32 id=1;//物品的编号
+  optional string name=2;//商品名
+  optional uint32 price=3;//出售价格
+  optional uint32 cost_type=4; //消费类型 0:金够买 1:元宝购买 2:友情点购买 3:人民币购买
+  optional string desc=5; //描述
+  optional uint32 price_1=6; //参考价格
+  optional float  fpercent=7; // 打折
+  optional int32  last_month_days=8; //剩余可以购买月充值的天数
+  optional int64  zhaohuan_free_time=9; //免费宝石召唤剩余时间(单位秒)
+  optional uint32 show_id=10; //真实显示的物品id
+}
+
+// 取得商店列表
+message GetShopListReq
+{
+  optional uint32 shopid=1;//商店编号
+}
+
+// 取得商店列表
+message GetShopListAck
+{
+  optional uint32 shopid=1; //商店编号
+  repeated GoodsOfSell goods=2;//商品
+}
+
+// 购买使用商品
+message ShoppingReq
+{
+  optional uint32 shopid=1;//商店编号
+  optional uint32 id=2;//商品ID
+}
+
+// 购买使用商品
+message ShoppingAck
+{
+  optional uint32 shopid=1;//商店编号
+  optional uint32 id=2;//商品ID
+  optional int32 err_no=3;//错误码
+}
+
+
+// 更新VIP等级
+message UpdateVIPLevel
+{
+  optional uint32 level=1;//VIP等级
+  optional uint32 sum_chongzhi=2;//累计充值
+}
+
+// 更新玩家友情点
+message UpdateFriendShip
+{
+  optional uint32 ship=1;//友情点
+}
+
+// 充值后订单信息  
+message ChongZhiOrderNtf
+{
+  optional uint64 order_id=1;//订单号ID
+  optional float  money=2; // 人民币
+  optional string str_url=3; //url地址
+}
+
+enum BUFF_TYPE
+{
+  E_BUFFTYPE_PVE=0;
+  E_BUFFTYPE_PVP=1;
+}
+
+message BuffItemListReq
+{
+  optional BUFF_TYPE type=1;
+}
+
+message BuffItemListAck
+{
+  optional int32 err_no=1;
+  repeated BuffItemInfo items=2;
+}
+
+message BuffItemBuyReq
+{
+  repeated uint32 ids=1;
+  optional BUFF_TYPE type=2;
+}
+message BuffItemInfo
+{
+  optional uint32 id=1;
+  optional uint32 price=2;
+  optional uint32 number=3;//buff添加的数值
+  optional SELL_TYPE type=4;
+  optional string name=5;
+  optional string desc=6;
+  optional bool owned=7;
+  optional uint32 duration=8;//持续时间（0，表示默认，未设置。大于0表示buff效果的持续时间）
+}
+
+enum SELL_TYPE
+{
+  E_GOLD=0;
+  E_GEM=1;
+  E_FRIENDSHIP_POINT=2;
+  E_RMB=3;
+}
+
+message RandomItemListReq
+{
+  optional BUFF_TYPE type=1;
+}
+
+message RandomItemListAck
+{
+  optional int32 err_no=1;
+  optional BuffItemInfo info=2;
+}
+
+message RandomItemBuyReq
+{
+  optional BUFF_TYPE type=1;
+}
+// 好友数据
+message FriendData
+{
+  optional uint64 friend_id=1;//好友ID
+  optional string name=2;//好友名字
+  optional uint32 head_id=3;//好友头像ID
+  optional uint32 level=4; //好友等级
+  optional uint32 kind=5;//平台类型
+  optional int64  last_online_time=6; //最近一次上线时间
+  optional bool   sex=7; //选择性别 false男  true女
+  optional int32  total_attack=8; //编队总战斗力
+}
+// 好友列表
+message FriendList
+{	
+  repeated FriendData data=1;//好友数据
+}
+
+//更新好友数据
+message UpdateFriend
+{
+  optional FriendData data=1;//好友数据
+}
+
+//删除一个好友
+message DelFriendReq
+{
+  optional uint64 friend_id=1;//好友ID
+}
+
+//删除一个好友
+message DelFriendAck
+{
+  optional uint64 friend_id=1;//好友ID
+  optional int32 err_no=2;//
+}
+
+//删除一个好友通知
+message DelFriendNtf
+{
+  optional uint64 friend_id=1;//好友ID
+}
+
+//拜访好友
+message VisitFriendReq
+{
+  optional uint64 friend_id=1;//好友ID
+  optional bool cur_queue=2; // false:冒险编队 true:竞技编队
+}
+
+//拜访好友
+message VisitFriendAck
+{
+  optional uint64 friend_id=1;//好友ID
+  repeated PetRecord pet=2;
+  optional uint64 admin_id=3; //队长ID
+}
+
+//申请好友数据
+message AskFriendData
+{
+  optional uint64 ask_friend_id=1;//申请人ID
+  optional string name=2; //申请人名字
+  optional uint32 head_id=3; // 申请人头像ID
+  optional uint32 level=4; //等级
+  optional uint32 kind=5; //平台类型
+  optional int64  ask_time=6; //申请时间
+  optional int32  total_attack=7; //编队总战斗力
+  optional bool sex=8; //性别
+}
+
+//获得申请好友列表
+message GetAskFriendReq
+{
+}
+
+//获得申请好友列表
+message GetAskFriendAck
+{
+  repeated AskFriendData data=1;//申请人数据
+}
+
+//搜索一个玩家
+message SearchPlayerReq
+{
+  optional uint64 player_id=1;//好友ID (id优先)
+  optional string player_name=2; //名字 
+}
+
+//搜索一个玩家
+message SearchPlayerAck
+{
+  optional uint64 player_id=1;//玩家ID
+  optional string name=2; //玩家名字
+  optional uint32 head_id=3; // 玩家头像ID
+  optional uint32 level=4; //等级
+  optional int32  err_no=5; 
+  optional int32  total_attack=6; //编队总战斗力
+  optional bool   sex=7; //false男  true女
+}
+
+//申请加好友
+message AskFriendReq
+{
+  optional uint64 friend_id=1;//好友ID
+}
+
+//申请加好友
+message AskFriendAck
+{
+  optional uint64 friend_id=1;//好友ID
+  optional int32 err_no=2;//
+}
+
+//好友申请通知
+message AddAskFriendNtf
+{
+  optional AskFriendData data=1;//申请人数据
+}
+
+//回复申请
+message ReplyAskReq
+{
+  optional uint64 friend_id=1;//好友ID
+  optional bool reply=2;//回复 true表示同意 false不同意
+}
+
+//回复申请
+message ReplyAskAck
+{
+  optional uint64 friend_id=1;//好友ID
+  optional int32 err_no=2; //
+}
+
+//新的申请通知
+message NewAskFriendNtf
+{
+}
+
+//设置是否可以加我为好友
+message SetAskFriendStateReq
+{
+  optional bool bflag=1; //flase表示可以 true表示不能加我为好友
+}
+
+//设置是否可以加我为好友
+message SetAskFriendStateAck
+{
+  optional bool bflag=1; //flase表示可以 true表示不能加我为好友
+  optional int32 err_no=2; //
+}
+
+// 读取玩家所有通关关卡的信息
+message GetChapterReq
+{
+}
+// 一个小关
+message OneCheckPoint
+{
+    optional int32 check_point_id=1; //小关id
+    optional int32 seconds=2; //本关通关用了多少秒
+    optional int32 challenged_count=3;//该关卡当日已挑战次数
+    optional int32 buy_challenged_count=4;//该关卡当日已购买挑战的次数 
+}
+// 一个章
+message OneChapter
+{
+    optional int32 chapter_id=1; //章id
+    repeated OneCheckPoint points=2; //本章中所有通关关卡(活动章时 对应所有可打的关卡)
+    optional int32 chapter_kind=3; //章类型0：普通章，1：精英章, 2:活动章
+    optional int32 challenged_count=4; //该活动章当日已挑战次数
+    optional int32 is_active_chapter_open=5; //该活动章是否可进入 0:该活动章当日已挑战次数已用完，不可进入，1：未用完，可进入
+    optional int32 max_challenge_count=6; //该活动章当日最大可打次数
+    optional int32 lose_type=7; //该章掉落的类型 1：金币掉落数量*n，2：宠物掉率*n，3:史莱姆出现概率*n，4:物品掉率*n。(n为倍数，可配置) 
+    optional float times=8;//倍数
+}
+// 所有章
+message GetChapterAck
+{
+    repeated OneChapter chapters=1; //所以的章
+    optional int32 chapter_id=2; //当前章id
+    optional int32 check_point_id=3; //当前小关
+    optional int32 next_chapter_id=4; //下一章id
+    optional int32 next_check_point_id=5; //下一个小关卡
+    optional int32 jingying_chapter_id=6; //当前精英章id
+    optional int32 jingying_check_point_id=7; //当前精英章小关
+    optional int32 jingying_next_chapter_id=8; //下一精英章章id
+    optional int32 jingying_next_check_point_id=9; //下一个精英章小关卡
+}
+
+//一个掉落活动章
+message OneChapterLoseActivity
+{
+    optional int32 chapter_kind=1; //章类型0：普通章，1：精英章,
+    optional int32 chapter_id=2; //章id
+    optional int32 lose_type=3; //该章掉落的类型 1：金币掉落数量*n，2：宠物掉率*n，3:史莱姆出现概率*n，4:物品掉率*n。(n为倍数，可配置) 
+    optional float times=4;//倍数
+}
+
+//掉落活动章信息通知
+message ChaptersLoseActivityNtf
+{
+    optional int64 begin_time=1; //活动开始时间
+    optional int64 end_time=2; //活动结束时间
+    repeated OneChapterLoseActivity chapter_lose_activities=3;//所有掉落活动章  
+}
+
+//新增可打活动章关卡通知
+message AddActiveChapterNtf
+{
+    repeated OneChapter chapters=1; //新增可打活动章通知    
+}
+
+// 更新某一章里某一关卡的信息(有可能是新增的)
+message UpdateCheckPointNtf
+{
+    optional int32 chapter_id=1; //章id
+    optional OneCheckPoint one_point=2; //小关
+    optional int32 next_chapter_id=3; // 如果当前关通关了, 则表示下一个可以打的章id
+    optional int32 next_check_point_id=4; // 如果当前关通关了, 则表示下一个可以打的小关id
+    optional int32 chapter_kind=5; //章类型0：普通章，1：精英章,2：活动章
+    //如果某普通大关通关了，还要通知该大关可打的精英关卡//begin
+    optional int32 jingying_chapter_open=6;//有精英大关开放，0：没有，1：有
+    optional int32 jingying_chapter_id=7;//精英章id
+    optional int32 jingying_check_point_id=8;//精英小关
+    //如果某普通大关通关了，还要通知该大关可打的精英关卡//end
+}
+
+message SelectCheckPointReq
+{
+    optional int32 chapter_id=1; //章id
+    optional int32 check_point_id=2; //小关
+    optional int32 chapter_kind=3;//章类型0：普通章，1：精英章，2，活动关卡
+}
+
+message SelectCheckPointAck
+{
+    optional int32 chapter_id=1; //章id
+    optional int32 check_point_id=2; //小关
+    optional int32 err_no=3; // 错误码
+    optional int32 chapter_kind=4;//章类型0：普通章，1：精英章，2：活动关卡
+    optional int32 challenged_count=5;//该关卡当日已挑战次数(活动关卡时，该字段表示该章当日已挑战次数)
+    optional int32 buy_challenged_count=6;//该关卡当日已购买挑战的次数
+}
+
+
+// 读取本关卡的好友排名
+message GetCheckPointRankReq
+{
+    optional int32 chapter_id=1; //章id
+    optional int32 check_point_id=2; //小关
+    optional int32 chapter_kind=3;//章类型0：普通章，1：精英章,2：活动章
+}
+// 一个好友的在某关的排名信息
+message FriendRankItem
+{  
+    optional int32 rank=1; // 排名
+    optional string name=2; //名称
+    optional int32 head_id=3; //头像id
+    optional int32 pass_seconds=4; //通关时间
+}
+message GetCheckPointRankAck
+{
+    repeated FriendRankItem friend_rank=1; // 排名列表
+    optional int32 err_no=2; //
+}
+
+// 读取当前作战伙伴列表
+message GetFriendArmsReq
+{
+}
+message FriendArms
+{
+    optional uint64     digitid=1; //玩家唯一id
+    optional string     name=2; //玩家名称
+    optional PetRecord  pet=3; //对应的队长宠物
+    optional int32      friendship=4; //能获得的友情点
+    optional int32      level=5; // 玩家等级
+    optional bool       is_friend=6;// 是否好友
+}
+message GetFriendArmsAck
+{
+    repeated FriendArms pets=1; // 伙伴列表
+    optional int32 err_no=2; //
+}
+
+// 客户端请求获得进入战斗的数据
+message BeginWarReq
+{
+    optional uint64     digitid=1; //被选择伙伴的唯一id
+}
+message MonsterBurstItem
+{
+    optional int32  monster_id=1; // 本场战斗中,怪物的唯一id
+    repeated TeXiaoItem item=2; // 
+}
+message TreasureBurstItem
+{
+    optional int32  treasure_id=1; // 本场战斗中,怪物的唯一id
+    repeated TeXiaoItem item=2; // 
+}
+
+message BufferItem
+{
+    // buffer 效果 编号
+    enum BufferEffectType
+    {
+        no_type=0;// 空类型
+        hurt=1;//# 伤害增加
+        reply=2;//# 回复增加
+        hp =3; //生命增加
+        spirit=4; //精神力增加
+        speed=5; //速度增加
+        crit=6; //暴击增加
+        magic_reply=7; //魔力回复
+    }
+    optional BufferEffectType id=1; // buffer 效果id
+    optional int32 value=2; // effect value 百分值
+}
+
+message BeginWarAck
+{
+    optional int32      err_no=1; // 错误码
+    optional bytes      sign_spirit=2; // 玩家当前精神力签名
+    optional bytes      sign_hp=3; // 玩家当前hp签名
+	optional bytes      sign_mp=4; //玩家当前mp签名
+	
+    repeated PetRecordSIGN  sign_my_pets=5; // 自己的宠物数据签名
+    optional PetRecordSIGN  sign_help_pet=6; // 协助的宠物数据签名
+    optional PetRecord      help_pet=7; // 协助的宠物数据
+    
+    repeated BufferItem buff=8; // 本次战斗携带的buffer. (这里没有做签名, 前端收到后,立即做签名处理)
+    repeated MonsterBurstItem burst_item=9; // 本次战斗中,出现掉落怪物会爆出的物品
+    repeated TreasureBurstItem treasure_item=10; // 本次战斗中, 会出现的宝箱,以及能开出的物品
+    optional int32      rnd_start_war_key=11; // 当返回NowStartWarRpt协议的时候,作为 NowStartWarRpt.rnd_start_war_key的输入值
+}
+
+message NowStartWarRpt
+{
+    optional int32      rnd_start_war_key=1; // 从 BeginWarAck 取得
+}
+
+
+// 被击杀怪物记录(根据策划描述,一场战斗中,最多不会超过 10造型的 怪物) 
+message DeadMonster
+{
+    optional int32 class_id=1; //造型id
+    optional int32 count=2; // 数量
+}
+// 客户端报告战斗结果: 胜负
+// 客户端本次战斗活动的奖励 <= 服务器记录的
+message WarResultReq
+{
+    optional int32 chapter_id=1; //章id
+    optional int32 check_point_id=2; //小关
+    optional int32 result=3; // 0 表示战斗胜利,通关, 1 表示失败, 2 表示放弃
+    optional int32 pass_second=4; // 本场战斗消耗时间.秒. 这个是客户端计算的结果
+    optional bytes sign_ccrp=5; // md5(string(chapter_id)+string(check_point_id)+string(result)+string(pass_second)), 注意是16字节表示,不是32字节的16进制字符串
+    repeated TeXiaoItem pick_item=6; // 本次战斗中拾取到的物品,包括宝箱和怪物爆出的(服务会校验)
+    repeated DeadMonster monsters=7; // 本次战斗中被击杀怪物的记录(服务器校验)
+    optional int32 chapter_kind=8; //章的种类，0:普通章，1：精英章，2：活动章
+    repeated uint32 buff_item_ids=9;//使用过的buff_item
+}
+
+message WarResultAck
+{
+    repeated TeXiaoItem award_item=1; //本次战斗中获得的奖励
+    optional int64 pass_second=2; // 本次通关时间 
+    optional int32 err_no=3; // 错误码
+    optional int32 star=4; // 星级
+    optional int32 result=5; // 0 表示战斗胜利,通关, 1 表示失败, 2 表示放弃
+    optional int32 old_level=6; // 获得本关经验前等级
+    optional int32 new_level=7; // 获得本关经验后等级
+}
+
+message  DeadInWarNtf
+{
+}
+
+message  DeadInWarAck
+{
+    optional int32 need_gem=1; // 复活需要的宝石数量
+}
+
+message  ReviveReq
+{
+}
+
+message  ReviveAck
+{
+    optional int32 err_no=1;
+}
+
+
+
+//宠物升级
+message  PetUpgradeReq
+{
+	optional uint64 id = 1; //宠物唯一id
+	repeated uint64 tunshi_pet = 2;//被吞噬的宠物唯一ID
+}
+
+message  PetUpgradeAck
+{
+	optional uint64 id = 1; //宠物唯一id
+	repeated uint64 tunshi_pet = 2;//被吞噬的宠物
+	optional int32 err_no = 3;//错误码
+}
+
+//宠物进化
+message  PetEvolveReq
+{
+	optional uint64 id = 1; //宠物唯一id
+}
+
+message  PetEvolveAck
+{
+	optional uint64 id = 1; //宠物唯一id
+	optional int32 err_no = 2;//错误码
+}
+
+message OwnedPetIDListReq
+{
+}
+
+message OwnedPetIDListAck
+{
+  repeated uint32 id = 1;
+}
+
+message NewPetOpenedNtf
+{
+  optional uint32 id = 1;
+}
+
+//成就数据
+message ChenJiuData
+{
+  optional uint32 id=1; //成就ID
+  optional uint32 value=2; //成就ID对应的当前值
+  optional uint32 type=3; //0表示已完成还没领,1表示完成了并领取，2表示还未完成
+}
+
+//成就种类
+message ChenJiuKind
+{
+  optional uint32 kind=1; //成就种类
+  repeated ChenJiuData data=2; //成就数据
+}
+
+//得到成就(触发的)
+message GetChenJiuReq
+{
+
+}
+
+//得到成就(触发的)
+message GetChenJiuAck
+{
+  repeated ChenJiuKind kind=1; //成就种类
+}
+
+//更新一个触发成就
+message UpdateChenJiu
+{
+  optional uint32 kind=1; //成就种类
+  optional ChenJiuData data=2; //成就数据
+}
+
+
+//领取成就奖励
+message GetChenJiuAwardReq
+{
+  optional  uint32  id=1; //成就id
+}
+
+//领取成就奖励
+message GetChenJiuAwardAck
+{
+  optional  int32  err_no=1; //领取结果 
+  optional  uint32  id=2; //成就id
+}
+
+message OneKeyGetChenJiuAwardReq
+{
+  repeated uint32 id=1;//(前端发送过来的id不包括可以随机奖励物品的id)
+}
+
+message QuestData
+{
+  optional uint32 id=1;
+  optional uint32 count=3;//总共需要完成数
+  optional uint32 current_count=4;//当前完成数
+  optional bool is_finished=5;
+  optional bool is_awarded=6;
+  optional string name=7;
+  optional string desc=8;
+  optional string award=9;
+  optional string category_name=10;
+}
+
+enum Period
+{
+  E_NONE=0;
+  E_DAILY=1;
+  E_WEEKLY=2;
+  E_FESTIVAL=3;
+}
+
+message GetQuestListReq
+{
+  optional Period period=1;
+}
+
+message GetQuestListAck
+{
+  repeated QuestData data=1;
+  optional uint32 time=2;
+  optional uint32 day=3;
+}
+
+message QuestUpdateData
+{
+  optional uint32 id=1;
+  optional uint32 current_count=2;
+  optional bool is_finished=3;
+  optional bool is_awarded=4;
+  optional Period period=5;
+}
+
+message UpdateQuestNtf
+{
+  repeated QuestUpdateData data=1;
+}
+
+message GetQuestAwardReq
+{
+  optional uint32 id=1;
+}
+
+message GetQuestAwardAck
+{
+  optional int32 err_no=1;
+}
+
+message OneKeyGetQuestAwardReq
+{
+  repeated uint32 id=1;//(前端发送过来的id不包括可以随机奖励物品的id)
+}
+
+message RefreshQuestNtf
+{
+  optional Period period=1;
+  repeated QuestData data=2;
+}
+
+message GetCurPvpDataReq
+{
+}
+
+message GetCurPvpDataAck
+{
+  optional uint32 group_id=1; //组ID
+  optional uint32 score=2; //总积分
+  optional uint32 sum_count=3; //竞技的总次数
+  optional uint32 win_count=4; //竞技赢的次数
+  optional uint32 today_count=5; //今日竞技的次数
+  optional bool   has_award=6; //是否已领奖 false:没领 true:已领
+  optional int64  cd_time=7; //cd时间
+  optional uint32 rank=8; //当前组的排名
+  optional uint32 today_buy_count=9; //今日购买次数
+}
+
+// pvp数据
+message PvpData
+{
+  optional uint64 player_id=1;//玩家ID
+  optional string name=2;//玩家名字
+  optional uint32 head_id=3;//好友头像ID
+  optional uint32 level=4; //玩家等级
+  optional uint32 score=5;//玩家积分
+  optional uint32 rank=6; //玩家排名
+  optional bool   sex=7; //玩家性别 性别false男  true女
+}
+
+message GetAllRankReq
+{
+}
+
+message GetAllRankAck
+{
+  repeated PvpData data=1; //玩家pvp排名数据
+}
+
+//好友pvp排名数据
+message PvpFriendData
+{
+  optional uint64 player_id=1;//玩家ID
+  optional uint32 score=2;//玩家积分
+}
+
+message GetFriendRankReq
+{
+}
+
+message GetFriendRankAck
+{
+  repeated PvpFriendData data=1; //好友pvp排名数据
+}
+
+message GetSumRankReq
+{
+}
+
+message GetSumRankAck
+{
+  repeated PvpData data=1; //玩家pvp排名数据
+}
+
+message ClearPvpCDReq
+{
+}
+
+message ClearPvpCDAck
+{
+  optional int32 err_no=1;
+  optional uint32 today_count=2; //玩家今日次数
+}
+
+message GetPvpAwardReq
+{
+}
+
+message GetPvpAwardAck
+{
+  optional int32 err_no=1;
+}
+
+message PvpWarBeginReq
+{
+}
+
+message PvpWarBeginAck
+{
+    optional int32      err_no=1; // 错误码
+    optional uint64     digitid=2; //玩家唯一id
+    optional string     name=3; //玩家名称
+    optional int32      level=4; // 玩家等级
+	optional uint32     head_id=5;//好友头像ID
+	
+	repeated PetRecord      target_pet=6; // 协助的宠物数据
+    repeated PetRecordSIGN  sign_my_pets=7; // 自己的宠物数据签名
+    repeated PetRecordSIGN  sign_target_pet=8; // 协助的宠物数据签名
+    
+    repeated BufferItem buff=9; // 本次战斗携带的buffer. (这里没有做签名, 前端收到后,立即做签名处理)
+	optional int32      rnd_start_war_key=10; //做校验的随机值
+	optional int32      total_attack=11; //总战斗力
+	optional bool       sex=12; //性别 false男 true女
+	repeated EquipData  equip=13;//宠物所携带装备
+}
+
+message PvpWarResultReq
+{
+  optional uint32 result=1;//结果  0 表示赢, 1 表示输, 2 表示平 
+  optional uint64 match_id=2; //匹配对手的ID
+  optional int32  rnd_start_war_key=3; //做校验的随机值
+  optional bytes sign_ccrp=4; // md5(string(result)+string(match_id)+string(rnd_start_war_key)), 注意是16字节表示,不是32字节的16进制字符串
+}
+
+message PvpWarResultAck
+{
+  optional int32 err_no=1;
+  optional uint32 result=2;//结果
+  optional uint32 score=3; //获得积分
+  optional uint32 sum_count=4; //竞技的总次数
+  optional uint32 win_count=5; //竞技赢的次数
+  optional uint32 today_count=6; //今日竞技的次数
+  optional uint32 rank=7; //当前组的排名
+  optional uint32 cur_score=8; //当前积分
+  optional int64  cd_time=9; //cd时间
+  optional uint32 group_id=10; //升级之后的组ID
+}
+
+message ActionCountTickNtf
+{
+  optional int64 last_time=1; //剩余时间, 单位秒
+}
+
+message CustomerServiceUrlNtf
+{
+  optional string url=1;
+  optional string key=2;
+}
+
+message SkillPage
+{
+  optional uint32 page=1;//技能页编号
+  optional uint32 active_skill_id_first=2;//主动技能1的ID
+  optional uint32 active_skill_id_second=3;//主动技能2的ID
+  repeated Skill skill=4;//技能详细
+}
+
+message Skill
+{
+  optional uint32 id=1;//技能ID
+  optional uint32 level=2;//已学习等级
+}
+message GetSkillListReq
+{
+
+}
+
+message GetSkillListAck
+{
+  repeated SkillPage skill_page=1;
+}
+
+message SaveSkillPageReq
+{
+  optional uint32 page=1;//保存的技能页编号
+  optional SkillPage skill_page=2;
+}
+
+message SaveSkillPageAck
+{
+  optional int32 err_no=1;
+}
+
+message SaveActiveSkillReq
+{
+  optional uint32 page=1;//进行选择主动技能操作的技能页编号
+  optional uint32 active_skill_id_first=2;//新设定的主动技能1的ID
+  optional uint32 active_skill_id_second=3;//新设定的主动技能2的ID
+}
+
+message SaveActiveSkillAck
+{
+  optional int32 err_no=1;
+}
+
+//物品资源
+message GoodsItem
+{
+	optional	uint64 qwID=1;			// 道具唯一id
+	optional	uint32 goods_id=2;		// 道具类id
+	optional	uint32 number=3;		// 道具当前叠加数量
+}
+
+//物品列表
+message GoodsList
+{
+  repeated GoodsItem data=1;
+}
+
+// 增加 一打 物品
+message AddGoodsItem
+{
+	optional GoodsItem  item=1; //增加一打卡道具
+}
+
+// 修改 一打 物品的数量， 如果发现 数量变为0， 则表示删除了该打武将卡
+message UpdateGoodsNumber
+{
+	optional uint64  qwid=1; //id
+	optional uint32  number=2; //数量
+}
+
+//装备数据
+message EquipData
+{
+	optional	uint64 qwID=1;			// 装备唯一id
+	optional	uint32 goods_id=2;		// 装备类id
+	optional    uint32 exp=3;           // 装备经验
+	optional    uint32 level=4;         // 装备等级
+	repeated    uint32 hole_id = 5;     // 装备孔洞
+	optional    uint64 qwpet_id=6;      // 所属宠物id 为0表示没有被宠物装备
+}
+
+//装备列表
+message EquipList
+{
+   repeated EquipData data=1;//
+}
+
+//增加一个装备
+message AddEquip
+{
+   optional EquipData data=1; //
+}
+
+//删除一个装备
+message DelEquip
+{
+   optional uint64 qwid=1;
+}
+
+//更新一个装备
+message UpdateEquip
+{
+   optional EquipData data=1; //
+}
+
+//穿上装备
+message PutOnEquipReq
+{
+  optional uint64 pet_id=1;//宠物id
+  optional uint64 equip_id=2;//装备id
+}
+
+message PutOnEquipAck
+{
+  optional int32 err_no=1;
+  optional uint64 pet_id=2;//宠物id
+  optional uint64 equip_id=3;//装备id
+}
+
+//强化被吞噬装备数据
+message TongShiEquip
+{
+  optional uint64 equip_id=1; //装备id
+  optional uint32 number=2; //数量
+}
+
+//强化装备
+message StrengEquipReq
+{
+  optional uint64 equip_id=1;//装备id
+  repeated TongShiEquip tonshi=2;//被吞装备数据
+}
+
+message StrengEquipAck
+{
+  optional int32 err_no=1;
+  optional uint64 equip_id=2;//装备id
+}
+
+//进阶装备
+message JinJieEquipReq 
+{
+  optional uint64 equip_id=1;//装备id
+}
+
+message JinJieEquipAck
+{
+  optional int32 err_no=1;
+  optional uint64 equip_id=2;//装备id
+}
+
+//合成物品
+message HeChengEquipReq
+{
+  optional uint64 goods_id=1;//物品id
+}
+
+message HeChengEquipAck
+{
+  optional int32 err_no=1;
+  optional uint64 goods_id=2;//物品id
+}
+
+//出售物品
+message SellGoodsReq
+{
+  optional uint64 goods_id=1;//物品id
+  optional uint32 number=2; //物品数量
+}
+
+message SellGoodsAck
+{
+  optional int32 err_no=1;
+  optional uint64 goods_id=2;//物品id
+  optional uint32 number=3; //物品数量
+}
+
+
+//装备镶嵌宝石
+message EquipSetStoreReq
+{
+  optional uint64 equip_id=1;//装备id
+  optional uint64 store_id=2;//宝石id
+  optional uint32 idx=3; //覆盖位置,从0开始 0,1,2
+}
+
+message EquipSetStoreAck
+{
+  optional int32 err_no=1;
+  optional uint64 equip_id=2;//装备id
+  optional uint64 store_id=3;//宝石id
+  optional uint32 idx=4; //覆盖位置,从0开始 0,1,2
+}
+
+//分享数据通知
+message ShareDataNtf
+{
+  optional uint32 kind=1; //分享类型
+  optional uint32 id=2;//分享id
+}
+
+message CompleteLoadDataNtf
+{
+}
+
+message SetPetNewStateReq
+{
+  optional uint64 qwid=1; //宠物id
+}
+
+message SetPetNewStateAck
+{
+  optional int32 err_no=1;
+  optional uint64 qwid=2; //宠物id
+}
+
+message UpdateBuyActionCounts
+{
+  optional uint32 cur_counts=1; //当前次数
+  optional uint32 max_counts=2; //总的次数
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// python 使用部分
+// 测试例子
+message PythonMsg_example
+{
+	optional double  t_double=1;
+	optional float   t_float=2;
+	optional int32   t_int32=3;
+	optional int64   t_int64=4;
+	optional uint32	 t_uint32=5;
+	optional uint64  t_uint64=6;
+	optional sint32  t_sint32=7;
+	optional sint64  t_sint64=8;
+	optional bool    t_bool=9;
+	optional string  t_string=10;
+	optional bytes	 t_bytes=11;
+}
+
+// 需要转给 python 解析的协议
+message PythonMessage
+{
+	optional int32    id=1;   // 转给python 处理的协议 id
+	optional bytes    msg=2;  // 例如 PythonMsg_example
+}
+
+
+// 抽卡
+message PyChouKaReq
+{
+    optional int32  id=1;   // 抽卡类型[1:宝石召唤,2:友情召唤]
+    optional bool   is_one = 2  [default = true]; //默认每次抽一张卡, 如果是每次不是抽一张,则为 false, 一般表示10 连抽
+}
+
+// 抽到的卡对应的其他信息
+message PyPetInfo
+{
+    optional uint32 pet_id=1; //抽卡得到道具的id
+	optional int32  level=2;  //等级
+}
+
+// 抽卡
+message PyChouKaAck
+{
+	optional int32 err_no=1;
+	repeated PyPetInfo info=2; // 与抽到卡集合对应的其他信息
+	repeated uint32 item_id=3; //装备,道具ID
+}
+
+//系统公告数据
+message PyGenGaoData
+{
+	optional  string theme = 1; //公告主题
+	optional  string content = 2;//公告内容
+}
+
+message PyGetGenGaoReq
+{
+} 
+
+//系统公告
+message PyGetGenGaoAck
+{
+	repeated PyGenGaoData data = 1;
+}
+
+message PyGetGoodActivePanelReq
+{
+} 
+
+message PyGoodActiveInfo 
+{
+	optional uint32 active_id=1; //活动ID
+	optional uint32 type=2; //类型 0表示不可领奖类型 大于0表示表示可以领奖类型  1能领 2不能领 3领过
+	optional string title=3; //活动名称
+	optional string desction=4; //活动描述
+	optional int64 param1=5; //活动前端用于显示的参数 负数表示跳转类型 -1每日登录 -2月充值
+	optional string award=6; //奖励
+}
+
+//活动面板的内容
+message PyGetGoodActivePanelAck 
+{
+	repeated PyGoodActiveInfo actives=1; //活动列表
+}
+
+message PyGetActiveAwardReq 
+{
+	optional uint32 active_id=1; //活动ID
+}
+
+message PyGetActiveAwardAck 
+{
+	optional uint32 active_id=1; //活动ID
+	optional int32 err_no=2; //错误码
+}
+
+message PyEveryDataActiveNtf 
+{
+	optional string str_awards=1; //奖励
+	optional uint32 days=2; //当前活动天数
+	optional uint32 type=3; //0:可以领奖 1:已领奖
+}
+
+message PySaveGuideStepReq 
+{
+	optional string guide_step=1; //新手引导步骤描述, 内容由客户端解析
+}
+
+message PySaveGuideStepAck 
+{
+	optional string guide_step=1; //新手引导步骤描述, 内容由客户端解析
+	optional int32 err_no=2; //0:保存成功（所有步骤还未做完），1:该步骤先前已经完成过了，2:保存成功（所有步骤都做完了），3:未知步骤
+}
+
+//精英关卡购买挑战次数请求 
+message PyBuyCheckPointChallengeCountReq
+{
+    optional int32 chpater_kind=1; //章的种类1：精英章
+    optional int32 chapter_id=2; //章id
+    optional int32 check_point_id=3; //小关
+}
+
+message PyBuyCheckPointChallengeCountAck
+{
+    optional int32 chpater_kind=1; //章的种类1：精英章
+    optional int32 chapter_id=2; //章id
+    optional int32 check_point_id=3; //小关
+    optional int32 challenged_counts=4;//该关卡当日挑战次数
+    optional int32 buy_counts=5;//该关卡当日购买次数
+    //错误码1 宝石不够，2 已达当日最大购买次数 3 该关卡尚未开放
+    optional int32 err_no=6; //错误码 
+}
