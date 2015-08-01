@@ -1,0 +1,177 @@
+package protoc.trs;
+
+enum ProtocID {
+  id_CRandCheckReq=1;  //服务器校验
+  id_CRandCheckAck = 2;
+  
+  id_PostTrasnFileReq=3;
+  id_PostTrasnFileAck=4; 
+  
+  id_TrasnFileRpt=5;
+  id_TransFileCompleteRpt=6; 
+  
+  id_CheckServerStateReq=7;
+  id_CheckServerStateAck=8;
+  
+  id_OpenServersReq=9;
+  id_CheckPasswordRpt=10;
+  
+  id_ServerErrorMsgRpt=11;
+  
+  id_PostTransLogFileReq = 12;//发起传输日志文件
+  id_PostTransLogFileAck = 13;//发起传输日志文件
+  
+  id_ReplyCanTransLogFile = 14;//回复服务器是否可以传输文件
+  id_TransLogFileRpt = 15;//开始传输文件
+  id_TransLogCompleteRpt = 16;//传输文件状态
+  
+  id_ExecuteSqlNtf = 17;//执行sql语句
+  
+  id_OtherServerReportRpt = 100; //其他服务器向他报告服务器的 id 与 名称
+  
+  
+  one_packg_max_size=60000; //发送一个包的最大长度
+  
+}
+
+// 服务器发送验证码密钥
+message CRandCheckReq
+{
+	optional bytes   randkeys=1;
+}
+
+// 返回用密钥加密的密码
+message CRandCheckAck
+{
+	optional bytes   keys=1;
+}
+
+// 客户端发起要传输文件
+message PostTrasnFileReq
+{
+	  optional uint32 file_length_zip = 1; // 目标文件的长度 压缩后长度
+    optional uint32 file_length_uzip = 2; // 目标文件的长度 压缩前长度
+    optional string file_name = 3; // 文件的名称(包含相对路径)
+    optional string file_md5 = 4; //文件的MD5值 压缩前的MD5
+    optional string server_name = 5; //目标服务器名称  gs/dbs/cs/gt/lg
+}
+
+// 告诉客户端是否可以开始传输文件
+message PostTrasnFileAck
+{
+    optional int32   err_no = 1; //错误码
+    optional string  err_msg=2; //错误信息
+}
+
+// 客户端持续传输文件
+message TrasnFileRpt
+{
+	optional bytes   file_data=1; //传输文件的内容
+	optional bool    blast=2;//true表示最后一个文件
+}
+
+// 服务器告诉客户端,传送完毕
+message TransFileCompleteRpt
+{
+    optional int32 		length = 1; //已经收到的长度,当收到的长度=文件的长度 表示传送完毕
+    optional int32    err_no = 2; //错误码
+    optional string 	err_msg=3;
+}
+
+//客户端发起要传输日志文件
+message PostTransLogFileReq
+{
+	optional string  server_name =1;//gs/dbs/cs/gt/lg
+	optional string  logtype = 2; //日志类型 UserLog/ShareLog/SqlLog
+	optional int32   day_idx = 3;//表示是哪天0表示今天，-1表示昨天，1表示明天
+}
+
+// 服务器告诉客户端日志文件信息
+message PostTransLogFileAck
+{
+	optional uint32 file_length_zip = 1; // 目标文件的长度 压缩后长度
+	optional uint32 file_length_uzip = 2; // 目标文件的长度 压缩前长度
+	optional string file_name = 3; // 文件的名称(包含相对路径)
+	optional string file_md5 = 4; //文件的MD5值 压缩前的MD5
+	optional string server_name = 5; //目标服务器名称  gs/dbs/cs/gt/lg
+	optional int32 err_no = 6; //错误码
+	optional string  err_msg=7; //错误信息
+}
+
+// 告诉服务器是否可以开始传输日志文件
+message ReplyCanTransLogFile
+{
+    optional int32   err_no = 1; //错误码
+    optional string  err_msg=2; //错误信息
+}
+
+// 服务器持续传输日志文件
+message TransLogFileRpt
+{
+    optional bytes   file_data=1; //传输日志文件的内容
+	optional int32   percent=2;//传输文件百分比
+}
+
+// 客户端告诉服务器,传送完毕
+message TransLogCompleteRpt
+{
+    optional int32 		length = 1; //已经收到的长度,当收到的长度=文件的长度 表示传送完毕
+    optional int32    err_no = 2; //错误码
+    optional string 	err_msg=3;
+}
+
+// 查询服务器状态
+message CheckServerStateReq
+{
+	optional string server=1;//服务器名字加上gs等(全名)
+}
+
+message ServerState
+{
+	optional string area_no=1;
+	optional string area_name=2;
+	repeated string server_name=3;
+	optional string server=4;//服务器名字加上gs等(全名)
+}
+
+// 返回查询状态结果
+message CheckServerStateAck
+{
+	repeated ServerState ss=1;
+}
+
+// 发送启动服务器的指令
+message OpenServersReq
+{
+	// opt=1  发送启动 dbs, cs, gs, gt 服务器的指令
+	// opt=2  发送启动 lg 指令
+	// opt=3  发送启动 lg - gm 指令
+	// opt=10 关闭所有的 lg 
+	optional int32  opt=1;  
+}
+
+message ExecuteSql
+{
+   optional string str_info=1;//执行结果
+}
+
+// 其他服务器报告
+message OtherServerReportRpt
+{
+	optional string server_name=1;
+	optional string server_id=2;
+}
+
+message CheckPasswordRpt
+{
+	optional string psw=1;
+}
+
+message ServerErrorMsgRpt
+{
+	optional string err_msg=1;
+}
+
+
+
+

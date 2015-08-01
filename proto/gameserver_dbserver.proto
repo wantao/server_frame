@@ -1,0 +1,272 @@
+package protoc.gs_dbs;
+
+
+message GameServerRpt
+{
+	optional	string  	gsid=1;
+	optional	string  	gsname=2;
+	optional	int32     max_number=3; //单gs能容纳的人数
+}
+
+message DBServerRpt
+{
+	optional	string  	dbid=1;
+	optional	string  	dbname=2;
+}
+
+message KickOutRpt
+{
+	optional	uint64  	playerid=1;
+}
+
+message KickOutAck
+{
+	optional	uint64  	playerid=1;
+	optional	int32     error_no=2;
+}
+
+message RandCheckReq
+{
+	optional	bytes  	key=1;
+}
+
+message RandCheckAck
+{
+	optional	bytes  	rand_text=1;
+}
+
+message HeartPingReq
+{
+	optional    int32 		opt=1;
+}
+
+message HeartPingAck
+{
+	optional    int32 		opt=1;
+}
+
+message GetIDReq
+{
+	optional    uint32 		kind=1;
+	optional    uint32 		number=2;
+}
+
+message GetIDAck
+{
+	optional    uint32 		kind=1;
+	optional    uint32 		number=2;
+	optional    uint64 		begin_id=3;
+	optional    uint64 		end_id=4;
+}
+
+// GM 列表
+message GMListRpt
+{
+	message gm
+	{
+		optional int32 			gm_level=2;
+		optional string     account=3;
+		optional string     password=4;
+	}
+	repeated gm table=1;
+}
+
+message CheckNewNameReq
+{
+  required uint64 	  playerid=1;    //游戏唯一通行证
+  required string     newname=2;
+  optional   uint32   head_pic_id=3;
+}
+
+message CheckNewNameAck
+{
+  required uint64 	playerid=1;    //游戏唯一通行证
+  required string   newname=2;
+  optional   uint32   head_pic_id=3;
+  required int32    error_no=4;
+}
+
+
+message GSState
+{
+  optional	string  	gsid=1;
+	optional	string  	gsname=2;
+	optional  int32     state=3; // 0标识不在线，断开；1标识在线
+	optional  int32     cur_online_number=4; //当前gs在线玩家数量
+}
+
+// 向所有的GS 广播 状态变换的GS
+message GameServerStateNtf
+{
+  optional	GSState  	gs=1;
+}
+
+// 当gs 连上 dbs 验证通过后，dbs 报告当前所有在线的gs 状态
+message AllGameServerStateRpt
+{
+  repeated	GSState  	gs=1;
+}
+
+
+// 转发全区GM命令
+message GMMessageNtf
+{
+  optional	uint64  	playerid=1;
+  optional	string    account=2;
+  optional	string    playername=3;
+  optional	string    ip=4;
+  optional	string    src_gs_id=5;
+  optional	string    cmd=6;
+}
+
+// 执行gm命令返回
+message GMMessageExecuteAck
+{
+  optional	uint64  	playerid=1;
+  optional	string    account=2;
+  optional	string    playername=3;
+  optional	string    cmd=4;
+  optional	string    src_gs_id=5;
+  optional	string    dest_gs_id=6;
+  
+  optional  int32 	  to_client_message_id=7;
+  optional  bytes     to_client_message=8;
+}
+
+// 查询服务器在线人数
+message GetGSOnlinePlayerNumberReq
+{
+  optional int32  kind=1; //0 取所有服务器，1取本服务器
+  optional uint64 playerid=2;
+}
+
+message GSPlayerNumber
+{
+  optional string gs=1;
+  optional string gsname=2;
+  optional int32  number=3;
+}
+
+// 返回服务器在线人数描述
+message GSOnlinePlayerNumberRpt
+{
+  repeated GSPlayerNumber gsn=1;
+  optional uint64 playerid=2;
+}
+
+// 当gs 连接上 dbserver 时，dbserver把当前其他服务器的在线玩家id发送给这个gs
+message OtherGSOnlinePlayerRpt
+{
+  optional int32  isonline=1; // 1表示在线，0表示下线
+  repeated uint64 playerid=2;
+}
+
+// 玩家在其他服务器上线报告
+message OtherGSPlayerOnlineRpt
+{
+  optional uint64 playerid=1;
+}
+
+// 玩家在其他服务器下线报告
+message OtherGSPlayerOfflineRpt
+{
+  optional uint64 playerid=1;
+}
+
+
+message ChongZhiPlayer
+{
+  optional uint64     transaction_id=1; //交易号
+  optional uint64     playerid=2; //玩家帐号
+}
+
+// ns 告诉dbs，你这个区 有 以下的不在线玩家进行了新的充值
+message OfflineChongZhiNtf
+{
+  optional uint32         area_no=1; //区号
+  repeated ChongZhiPlayer chongzhi_user=2; //充值的用户
+}
+
+// 向dbserver 报告，玩家处于下线状态
+message PlayerLeaveGameRpt
+{
+  optional uint64 playerid=1;
+}
+
+message GetGM_ListReq
+{
+ optional uint64 playerid= 1;
+}
+
+message GetGM_ListAck
+{
+  optional uint64 playerid= 1;
+  optional int32  err_no=2; 
+}
+
+// gs告诉 dbserver 关闭
+message DBSServerCloseNtf
+{
+}
+
+// 玩家的数据在gs上 release 后报告
+message CheckInGSReq
+{
+	optional uint64 playerid=3; //玩家id
+}
+
+message CheckInGSAck
+{
+	optional uint64 playerid=3; //玩家id
+}
+
+// gs 通过dbs, 向 lg 获得本服当前登录随机码
+message get_login_key_req
+{
+	optional uint64 playerid=1; //gm玩家id
+}
+
+message get_login_key_ack
+{
+	optional uint64 playerid=1; //gm玩家id
+	optional string key=2;
+	optional int32  leave_time=3; //剩余有效时间 秒
+}
+
+message login_gs_req
+{
+	optional uint64 playerid=1;
+	optional string account=2;
+	optional uint32 area_id=3; //区号
+	optional int32  platform_id=4; // 平台id
+}
+
+message login_gs_ack
+{
+	optional uint64 playerid=1;
+	optional string gate_ip=2;
+	optional int32  gateport=3; // gate server port
+	optional int32  gate_key=4;
+	optional int32  err_no=5; 
+}
+
+message online_gs_rpt
+{
+	optional uint64 playerid=1;
+	optional string gsid=2;
+}
+
+message switch_gs_lock_req
+{
+	optional uint64 playerid=1;
+	optional string gsid=2;
+}
+
+message switch_gs_lock_ack
+{
+	optional uint64 playerid=1;
+	optional string gsid=2;
+}
+
+
+

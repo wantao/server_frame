@@ -1,0 +1,133 @@
+package protoc.logindbs;
+
+//loginserver 向 dbserver 报告gateserver 信息
+message CLoginServerRpt
+{
+	optional string id=1; 		//gate id
+	optional string name=2; 	//gate name
+	optional string key=3;		//rand check key
+}
+
+//loginserver 向dbserver 报告有玩家进入游戏，让dbserver 检查是否是否允许进入，
+//如果发现重复，则先将现在在线的帐号踢下线
+message CUserCheckInDBServerReq
+{
+	optional uint32		transID=1;	//网络传送编号
+	optional uint64 	playerid=2;	//游戏唯一通行证
+	optional string 	account=3;	//user id
+	optional int32    area_id=4;  //区号
+	optional int32    platform_id=5; // 平台id
+}
+
+//dbserver 告诉 loginserver 可以让这个帐号 登录了
+message CUserCheckInDBServerAck
+{
+	optional uint32		transID=1;          //网络传送编号
+	optional uint64 	playerid=2;    			//游戏唯一通行证
+	optional int32 		err_no=3; 				// 错误吗
+	optional string 	gate_ip=4;    			//将要连接的gate ip
+  optional uint32 	gate_port=5;    		//端口
+  optional int32 		gate_key=6;	   			//key
+  optional uint32 	sessionid=7; 			  //在目标gate上是唯一id
+}
+
+message CRandCheckReq
+{
+	optional bytes   randkeys=1;
+}
+
+message CRandCheckAck
+{
+	optional bytes   keys=1;
+}
+
+message CHeartPing
+{
+	optional int32 		opt=1;
+}
+
+message CHeartPingAck
+{
+	optional int32 		opt=1;
+}
+
+// GM 列表
+message GMListRpt
+{
+	message gm
+	{
+		optional int32 			gm_level=2;
+		optional string     account=3;
+		optional string     password=4;
+	}
+	repeated gm table=1;
+}
+
+// dbserver  告诉 loginserver 本区现在可以容纳的在线人数
+message AreaMaxOnlineNumberRpt
+{
+  optional int32 		number=1;
+}
+
+// dbserver 向 loginserver 报告服务器消息
+message CDBServerRpt
+{
+	optional string id=1; 		//
+	optional string name=2; 	//
+	optional int32 		number=3;
+}
+
+// 手动下架
+message LDGetGM_ListReq
+{
+ optional uint64 playerid= 1;
+ optional string strDBID = 2;
+}
+
+message LDGetGM_ListAck
+{
+  optional uint64 playerid= 1;
+  optional string strDBID = 2;
+  optional	int32  err_no=3; 
+}
+
+// dbsserver 告诉 loginserver 关闭
+message LoginServerCloseNtf
+{
+}
+
+
+// dbserver 告诉 loginserver , 一个玩家的基本登陆数据已经发送给gs 完毕,
+// loginserver 可以让下一个排队中的client, 进入游戏了
+message PlayerGetBaseDataComplete
+{
+	optional 	string account= 1;
+}
+
+// 一个正等待 dbserver 校验返回的 client 断开, 需要立即告诉dbserver
+message ClientCloseWhenWaitCheckInDB
+{
+	optional uint64 playerid= 1;
+}
+
+// dbs 转达了一个获取 登陆key的请求
+message get_login_key_req
+{
+	optional uint64 playerid=1; //请求的gm id
+	optional string gsid=2; //gm 所在的目标gs
+}
+
+message get_login_key_ack
+{
+	optional uint64 playerid=1; 
+	optional string gsid=2;
+	optional string key=3;
+	optional int32  leave_time=4; //剩余有效时间 秒
+}
+
+message UpdateFastAttackBlackAccountRpt
+{
+	optional string 	account=1;
+	optional uint32   attack_value=2; 
+}
+

@@ -1,0 +1,105 @@
+package protoc.loginclient;
+
+import "options.proto";
+
+message ClientLoginReq
+{
+  required string account=1;          //帐号
+  optional string password=2;         //密码
+  optional string session_key=3;      //key
+  optional int32  opt=4;              //optional
+  optional string login_key=5;		// 非gm 号 使用这个方式登录, 则需要 login_key
+  optional uint32 version_id=6; 	// 客户端版本号
+}
+
+message ClientLoginAck
+{
+  optional uint64 digit_account=1; // 给本游戏的玩家分配的一个唯一的数字帐号
+  optional string gate_ip=2;	     //将要连接的gate ip
+  optional uint32 gate_port=3;	   //端口
+  optional int32  gate_key=4;	     //gate 生成随机值
+  optional int32  err_no=5;	   //错误码
+  optional string error_msg=6;	   //错误信息
+  optional string account=7;	     //玩家帐号
+}
+
+// 创建帐号
+message ClientCreateAccountReq
+{
+  required string account=1;          //帐号
+  optional string password=2;         //密码
+  optional string session_key=3;      //key
+  optional int32  opt=4;              //optional
+}
+
+// 创建结果返回
+message ClientCreateAccountAck
+{
+  optional int32  err_no=1;           //optional
+  optional string account=2;          //帐号
+  optional uint64  opt=3;             //optional
+}
+
+message ClientWebLoginReq
+{
+  required string session_key=1;      //key
+  optional string account=2;          //帐号
+  optional uint32 version_id=3; 		  // 客户端版本号
+}
+
+message OnePlayerInfo
+{
+  optional uint64  digitid=1;              //唯一id
+  optional string  name=2;          			 //角色名称
+  optional uint32  exp=3;              		 //声望值
+}
+
+
+// 如果该帐号有多个角色,则服务器会返回这多个角色信息
+// 玩家必须在 10 秒内作出选择, 否则, 客户端自动给玩家选择一个声望最高的角色进入游戏
+message AccountAllPlayerInfoRpt
+{
+  repeated OnePlayerInfo players=1;
+}
+
+// 把玩家选择的角色id 返回给服务器
+message SelectActivePlayer
+{
+  optional uint64  digitid=1;              //唯一id
+}
+
+// 进入排队登陆,返回排队情况
+message WaitingLoinNtf
+{
+  optional int32  number=1;              //前面还有多少人等待
+}
+
+
+// 在限号登录模式下 ====================================================================
+
+// 短连接注册帐号. (需要使用激活码)
+message SelfModeCreatekAccountReq
+{
+    optional string  account=1; 
+    optional string  password=2;
+    optional string  invitation_code =3; // 邀请码
+}
+
+message SelfModeCreatekAccountAck
+{
+    optional int32  err_no=1; // 注册成功值为0号; 
+}
+
+// 使用激活码激活现有帐号. 
+message SelfModeActiveAccountReq
+{
+    optional string  account=1; // 如果有平台帐号,则需要平台前缀
+    optional string  invitation_code = 2; // 邀请码
+}
+
+message SelfModeActiveAccountAck
+{
+    optional int32  err_no=1; // 注册成功值为0号; 
+}
+
+// 在限号登录模式下 ====================================================================

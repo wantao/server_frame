@@ -1,0 +1,219 @@
+package tableconfig;
+import "options.proto";
+
+
+//玩家等级记录
+message PlayerLevelRecord 
+{
+
+	optional int32 level=1;			//玩家等级
+	optional uint32 exp=2;		//获得这个等级需要的经验
+	optional uint32 mp=3;       //mp
+	optional uint32 hp=4;      //hp
+	optional uint32 spirit=5;  //精神力
+	optional uint32 action_count=6; //行动力
+	optional uint32 friend_count=7; //好友上限
+}
+	
+//玩家等级表
+message SPlayerLevelList
+{
+
+	repeated PlayerLevelRecord record = 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+enum LEARN_KIND
+{
+  e_no_pro=0; //不需要条件
+  e_level=1;//玩家等级
+}
+
+message WillLearnSkill
+{
+
+	
+	optional	uint32      skill_id=1;  // 技能id
+	optional  LEARN_KIND  prt_id=2; //需要的属性
+	optional	uint32      value=3;// 属性的条件值
+}
+
+//宠物属性
+message  PetRecordCfg
+{
+
+	
+	optional int32  kind=1; 			//宠物 大类型 
+	optional int32  id=2; 				//宠物 id
+    optional string name=3;				//宠物名称 名称
+	optional int32  limit_number=4;		//该宠物的最大叠加上限
+	optional string desc=5;				//宠物的描述
+	optional int32  pet_kind=6;               //宠物类别
+	optional int32  rare=7;           //稀有度，一星两星三星         
+	optional uint32 recover=8;           //宠物的回复力
+	optional uint32  head_pic_id=9;      //宠物头像卡id
+	optional float dps=10;             //宠物的秒伤
+	optional uint32 hp=11;               //宠物的hp
+	optional uint32 level=12;           //宠物等级
+	optional uint32 tongshi_exp=13;     //宠物提供被吞噬的经验
+	optional uint32 action_skill=14;    //主动技能
+	optional uint32 leader_skill=15;    //队长技能
+	repeated WillLearnSkill skills=16;    //满足某些条件才能修改习的技能,指的是被动技能
+	optional int32  bind=17;               //是否绑定
+	optional uint32 speed=18;             //宠物的速度
+	optional uint32 spirit=19;               //宠物的精神力
+	optional uint32 mp=20;           //宠物的mp
+	optional uint32 max_level=21;       //宠物最大等级
+	optional uint32 zhiye=22;           //宠物的职业
+	optional uint32 evolve_id=23;       //进化后的ID
+	repeated uint32 evolve_conditions=24;  //进化条件(宠物ID)
+}
+
+message  PetListCfg
+{
+
+	repeated PetRecordCfg record=1;
+}
+
+
+//玩家携带宠物数量
+message PlayerPetNumber
+{
+
+	optional int32 level=1;			//玩家等级
+	optional uint32 number=2;		//可以携带宠物数量
+}
+	
+//玩家携带宠物数量表
+message SPlayerPetNumberList
+{
+
+	repeated PlayerPetNumber record = 1;
+}
+
+//职业
+message ZhiYeIDNameRecord
+{
+
+	optional int32  id=1; 		//职业 id
+    optional string name=2;		//职业 名称
+}
+
+message ZhiYeIDNameList
+{
+
+	repeated ZhiYeIDNameRecord record=1;
+}
+
+//宠物类别
+message PetClassIDName
+{
+
+	optional int32  id=1; 		// id
+    optional string name=2;		// 名称
+}
+
+message PetClassIDNameList
+{
+
+	repeated PetClassIDName record=1;
+}
+
+message PetSkill
+{	
+	optional    int32   skillid=1;  // 技能id
+	optional    int32   skill_range=2; // 该技能作用于宠物的类型 .作用于宠物的类型. 具体类型参考 c_pet_kind 表
+	optional    int32   skill_type=3; 
+	optional    string  skill_name=4;
+	optional    string  skill_desc=5;
+	optional    float   x1=6;
+	optional    float   x2=7;
+	optional    float   x3=8;
+	optional    float   x4=9;
+	optional    float   x5=10;
+	optional    float   x6=11;
+	optional    float   x7=12;
+	optional    float   x8=13;
+	optional    float   x9=14;
+	optional    float   x10=15;
+	optional    int32   maxlevel=16;
+	optional    int32   cooltime=17;
+	optional    int32   leader_type=18;
+}
+
+message PetSkillList
+{
+    repeated PetSkill record=1;
+}
+
+//伤害效果
+message HurtEffect
+{
+    optional uint32  pos = 1; //位置 1:基础效果 2:特殊效果1 3:特殊效果2
+	optional uint32  type = 2; //7种伤害类型 增加伤害,减少伤害...
+	optional float   value = 3; //该类型对应的值
+}
+
+//物品
+message  NormalGoodsRecord
+{
+	optional uint32  id=1; 				//物品 id
+	optional uint32  kind=2; 			//物品 大类型 （1表示：装备；2表示：道具类）
+	optional uint32  kind_type=3;   //物品小类型（道具类别）
+	optional uint32  limit_number=4;		//该物品的最大叠加上限
+	optional string  name=5;				//物品名称 名称
+	optional string  desc=6;				    //物品的描述
+	optional uint32  pet_level=7;               //装备要求等级
+	optional uint32  ping_zhi=8;            //装备品质
+	optional uint32  hole=9;                //装备孔洞数
+	optional uint32  chip_number=10;       //合成该物品的碎片数量       
+	optional uint32  chip_id=11;       //合成该物品的碎片ID
+	optional uint32  gem_level=12;      //宝石等级
+	optional uint32  gem_number=13;      //合成的宝石需要的数量
+	optional uint32  gem_id=14;      //合成之后的宝石id
+	optional uint32  jinjie_number=15;      //进阶需要消耗其他魔核数量
+	optional uint32  jinjie_mohe_id=16;      //进阶需要消耗魔核id
+	optional uint32  jinjie_id=17;      //进阶之后的装备id
+	repeated HurtEffect effects=18;       //伤害效果
+	optional bool    can_put_on=19;      //是否能穿,升级 false:不能穿,true可以穿
+	optional string  produce_place=20;   //掉落地方
+	optional bool    can_streng_material=21;      //是否做强化材料 false:不能,true可以
+}
+
+message  NormalGoodsList
+{
+	repeated NormalGoodsRecord record=1;
+}
+
+// 专门给计算宠物战斗力和编队战斗力使用的属性表
+message PetSkillPro
+{	
+    optional    int32   skill_id=1;  // 技能id
+    optional    int32   skill_level=2; //技能等级
+    optional    float   inc_hurt=3;//增伤
+    optional    float   inc_hp=4;//增加生命
+    optional    float   dec_hurt=5;//减伤
+    optional    float   huifu=6;//回复
+    optional    float   baoji_lv=7;//暴击率
+    optional    float   baoji_hurt=8;//暴击伤害
+    optional    float   speed=9;//攻击速度
+    optional    int32   zhan_dou_li=10;//主动技能固定战斗力
+}
+
+message PetSkillProList
+{
+    repeated PetSkillPro record=1;
+}
+
+// 宠物召唤
+message PetZhaoHuan
+{
+	optional  int32 level=1; //玩家等级
+	repeated  int32 rare_val=2; //宠物星级对应的召唤数量
+}
+
+message PetZhaoHuanList
+{
+	repeated PetZhaoHuan record=1;
+}

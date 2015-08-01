@@ -1,0 +1,619 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AFX_MARKUPSTL_H__948A2705_9E68_11D2_A0BF_00105A27C570__INCLUDED_	include/MarkupSTL.h	10;"	d
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	302;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	305;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	308;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	311;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	314;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	317;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	320;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	324;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	289;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	292;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	295;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	298;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	301;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	304;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	307;"	d	file:
+ARCHITECTURE_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	311;"	d	file:
+Add	include/MarkupSTL.h	/^                void Add() { ++nTop; if (nTop==nSize) Alloc(nSize*2+6); };$/;"	f	struct:CMarkupSTL::NodeStack
+AddAttrib	include/MarkupSTL.h	/^        bool AddAttrib( const char* szAttrib, const char* szValue ) { return x_SetAttrib(m_iPos,szAttrib,szValue); };$/;"	f	class:CMarkupSTL
+AddAttrib	include/MarkupSTL.h	/^        bool AddAttrib( const char* szAttrib, int nValue ) { return x_SetAttrib(m_iPos,szAttrib,nValue); };$/;"	f	class:CMarkupSTL
+AddChildAttrib	include/MarkupSTL.h	/^        bool AddChildAttrib( const char* szAttrib, const char* szValue ) { return x_SetAttrib(m_iPosChild,szAttrib,szValue); };$/;"	f	class:CMarkupSTL
+AddChildAttrib	include/MarkupSTL.h	/^        bool AddChildAttrib( const char* szAttrib, int nValue ) { return x_SetAttrib(m_iPosChild,szAttrib,nValue); };$/;"	f	class:CMarkupSTL
+AddChildElem	include/MarkupSTL.h	/^        bool AddChildElem( const char* szName, const char* szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_CHILD); };$/;"	f	class:CMarkupSTL
+AddChildElem	include/MarkupSTL.h	/^        bool AddChildElem( const char* szName, int nValue, int nFlags=0 ) { return x_AddElem(szName,nValue,nFlags|MNF_CHILD); };$/;"	f	class:CMarkupSTL
+AddChildSubDoc	include/MarkupSTL.h	/^        bool AddChildSubDoc( const char* szSubDoc ) { return x_AddSubDoc(szSubDoc,MNF_CHILD); };$/;"	f	class:CMarkupSTL
+AddElem	include/MarkupSTL.h	/^        bool AddElem( const char* szName, const char* szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags); };$/;"	f	class:CMarkupSTL
+AddElem	include/MarkupSTL.h	/^        bool AddElem( const char* szName, int nValue, int nFlags=0 ) { return x_AddElem(szName,nValue,nFlags); };$/;"	f	class:CMarkupSTL
+AddNode	include/MarkupSTL.h	/^        bool AddNode( int nType, const char* szText ) { return x_AddNode(nType,szText,0); };$/;"	f	class:CMarkupSTL
+AddSubDoc	include/MarkupSTL.h	/^        bool AddSubDoc( const char* szSubDoc ) { return x_AddSubDoc(szSubDoc,0); };$/;"	f	class:CMarkupSTL
+AdjustStartTagLen	include/MarkupSTL.h	/^                void AdjustStartTagLen( int n ) { nTagLengths += n; };$/;"	f	struct:CMarkupSTL::ElemPos
+Alloc	include/MarkupSTL.h	/^                void Alloc( int nNewSize ) { NodePos* pNNew = new NodePos[nNewSize]; Copy(pNNew); nSize=nNewSize; };$/;"	f	struct:CMarkupSTL::NodeStack
+AllocMapTable	include/MarkupSTL.h	/^                void AllocMapTable() { pTable = new SavedPos*[SPM_SIZE]; for (int n=0; n<SPM_SIZE; ++n) pTable[n]=NULL; };$/;"	f	struct:CMarkupSTL::SavedPosMap
+At	include/MarkupSTL.h	/^                NodePos& At( int n ) { return pN[n]; };$/;"	f	struct:CMarkupSTL::NodeStack
+CMAKE_BINARY_DIR	build/tests/test-filelog/Makefile	/^CMAKE_BINARY_DIR = \/mnt\/windowsDir\/sh\/build\/tests\/test-filelog$/;"	m
+CMAKE_COMMAND	build/tests/test-filelog/Makefile	/^CMAKE_COMMAND = \/usr\/local\/bin\/cmake$/;"	m
+CMAKE_SOURCE_DIR	build/tests/test-filelog/Makefile	/^CMAKE_SOURCE_DIR = \/mnt\/windowsDir\/sh\/build\/tests\/test-filelog$/;"	m
+CMarkupSTL	include/MarkupSTL.h	/^        CMarkupSTL( const CMarkupSTL& markup ) { *this = markup; };$/;"	f	class:CMarkupSTL
+CMarkupSTL	include/MarkupSTL.h	/^        CMarkupSTL( const char* szDoc ) { SetDoc( szDoc ); InitDocFlags(); };$/;"	f	class:CMarkupSTL
+CMarkupSTL	include/MarkupSTL.h	/^        CMarkupSTL( int nFlags ) { SetDoc( NULL ); m_nFlags = nFlags; };$/;"	f	class:CMarkupSTL
+CMarkupSTL	include/MarkupSTL.h	/^        CMarkupSTL() { SetDoc( NULL ); InitDocFlags(); };$/;"	f	class:CMarkupSTL
+CMarkupSTL	include/MarkupSTL.h	/^class CMarkupSTL$/;"	c
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	107;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	112;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	119;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	122;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	125;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	133;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	13;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	152;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	160;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	171;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	178;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	195;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	198;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	201;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	24;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	32;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	38;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	44;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	50;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	56;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	70;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	77;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	85;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	88;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	90;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	99;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	104;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	112;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	117;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	124;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	127;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	12;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	135;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	154;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	162;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	165;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	182;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	185;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	188;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	18;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	29;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	37;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	43;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	49;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	55;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	61;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	75;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	82;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	90;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	93;"	d	file:
+COMPILER_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	95;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	100;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	108;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	114;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	126;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	135;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	154;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	15;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	173;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	181;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	186;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	25;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	33;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	39;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	46;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	52;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	59;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	64;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	72;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	79;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	93;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	105;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	113;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	119;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	128;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	137;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	14;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	156;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	168;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	173;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	20;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	30;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	38;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	44;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	51;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	57;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	64;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	69;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	77;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	84;"	d	file:
+COMPILER_VERSION_MAJOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	98;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	101;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	109;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	115;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	127;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	136;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	155;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	16;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	174;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	182;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	187;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	26;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	34;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	40;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	47;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	53;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	60;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	65;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	73;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	80;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	94;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	106;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	114;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	120;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	129;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	138;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	157;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	15;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	169;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	174;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	21;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	31;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	39;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	45;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	52;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	58;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	65;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	70;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	78;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	85;"	d	file:
+COMPILER_VERSION_MINOR	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	99;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	103;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	116;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	129;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	140;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	143;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	156;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	175;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	17;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	183;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	188;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	28;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	35;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	41;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	61;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	66;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	74;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	81;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	95;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	100;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	108;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	121;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	131;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	142;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	145;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	158;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	170;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	175;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	22;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	33;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	40;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	46;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	66;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	71;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	79;"	d	file:
+COMPILER_VERSION_PATCH	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	86;"	d	file:
+COMPILER_VERSION_TWEAK	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	147;"	d	file:
+COMPILER_VERSION_TWEAK	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	20;"	d	file:
+COMPILER_VERSION_TWEAK	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	149;"	d	file:
+COMPILER_VERSION_TWEAK	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	25;"	d	file:
+Clear	include/MarkupSTL.h	/^                void Clear() { nL=0; nR=-1; nNext=0; };$/;"	f	struct:CMarkupSTL::TokenPos
+Clear	include/MarkupSTL.h	/^                void Clear() { nSegs=0; nSize=0; pSegs=NULL; };$/;"	f	struct:CMarkupSTL::PosArray
+ClearVirtualParent	include/MarkupSTL.h	/^                void ClearVirtualParent() { memset(this,0,sizeof(ElemPos)); };$/;"	f	struct:CMarkupSTL::ElemPos
+ContentLen	include/MarkupSTL.h	/^                int ContentLen() const { return nLength - StartTagLen() - EndTagLen(); };$/;"	f	struct:CMarkupSTL::ElemPos
+Copy	include/MarkupSTL.h	/^                void Copy( NodePos* pNNew ) { for(int n=0;n<nSize;++n) pNNew[n]=pN[n]; if (pN) delete [] pN; pN=pNNew; };$/;"	f	struct:CMarkupSTL::NodeStack
+DEBUG_LOG_LEVEL_ID	include/sh_filelog.h	/^static const int  DEBUG_LOG_LEVEL_ID=   1;$/;"	m	namespace:sh
+DEBUG_LOG_LEVEL_NAME	include/sh_filelog.h	/^static const char*  DEBUG_LOG_LEVEL_NAME=   "debug";$/;"	m	namespace:sh
+DEC	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	328;"	d	file:
+DEC	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	315;"	d	file:
+DWORD	include/sh_type.h	/^typedef unsigned long       DWORD;$/;"	t	namespace:sh
+EP_LEVMASK	include/MarkupSTL.h	/^                enum { EP_STBITS=22, EP_STMASK=0x2fffff, EP_LEVMASK=0xffff };$/;"	e	enum:CMarkupSTL::ElemPos::__anon1
+EP_STBITS	include/MarkupSTL.h	/^                enum { EP_STBITS=22, EP_STMASK=0x2fffff, EP_LEVMASK=0xffff };$/;"	e	enum:CMarkupSTL::ElemPos::__anon1
+EP_STMASK	include/MarkupSTL.h	/^                enum { EP_STBITS=22, EP_STMASK=0x2fffff, EP_LEVMASK=0xffff };$/;"	e	enum:CMarkupSTL::ElemPos::__anon1
+EQUALS	build/tests/test-filelog/Makefile	/^EQUALS = =$/;"	m
+ERROR_LOG_LEVEL_ID	include/sh_filelog.h	/^static const int  ERROR_LOG_LEVEL_ID=   4;$/;"	m	namespace:sh
+ERROR_LOG_LEVEL_NAME	include/sh_filelog.h	/^static const char*  ERROR_LOG_LEVEL_NAME=   "error";$/;"	m	namespace:sh
+ElemPos	include/MarkupSTL.h	/^                ElemPos( const ElemPos& pos ) { *this = pos; };$/;"	f	struct:CMarkupSTL::ElemPos
+ElemPos	include/MarkupSTL.h	/^                ElemPos() {};$/;"	f	struct:CMarkupSTL::ElemPos
+ElemPos	include/MarkupSTL.h	/^        struct ElemPos$/;"	s	class:CMarkupSTL
+EndTagLen	include/MarkupSTL.h	/^                int EndTagLen() const { return (nTagLengths >> EP_STBITS); };$/;"	f	struct:CMarkupSTL::ElemPos
+EscapeText	src/MarkupSTL.cpp	/^string CMarkupSTL::EscapeText( const char* szText, int nFlags )$/;"	f	class:CMarkupSTL
+FAST_LOG_BUFFER_SIZE_SHARE_FILE_LOG	include/sh_filelog.h	/^static const int  FAST_LOG_BUFFER_SIZE_SHARE_FILE_LOG = 1024;$/;"	m	namespace:sh
+FATAL_LOG_LEVEL_ID	include/sh_filelog.h	/^static const int  FATAL_LOG_LEVEL_ID=   5;$/;"	m	namespace:sh
+FATAL_LOG_LEVEL_NAME	include/sh_filelog.h	/^static const char*  FATAL_LOG_LEVEL_NAME=   "fatal";$/;"	m	namespace:sh
+FINDNODEBAD	src/MarkupSTL.cpp	1178;"	d	file:
+FINDNODETYPE	src/MarkupSTL.cpp	1177;"	d	file:
+FLOG_SHARE_FILE_LOG__	include/sh_filelog.h	103;"	d
+FindChildElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::FindChildElem( const char* szName )$/;"	f	class:CMarkupSTL
+FindElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::FindElem( const char* szName )$/;"	f	class:CMarkupSTL
+FindNode	src/MarkupSTL.cpp	/^int CMarkupSTL::FindNode( int nType )$/;"	f	class:CMarkupSTL
+GetAttrib	include/MarkupSTL.h	/^        std::string GetAttrib( const char* szAttrib ) const { return x_GetAttrib(m_iPos,szAttrib); };$/;"	f	class:CMarkupSTL
+GetAttribName	src/MarkupSTL.cpp	/^string CMarkupSTL::GetAttribName( int n ) const$/;"	f	class:CMarkupSTL
+GetChildAttrib	include/MarkupSTL.h	/^        std::string GetChildAttrib( const char* szAttrib ) const { return x_GetAttrib(m_iPosChild,szAttrib); };$/;"	f	class:CMarkupSTL
+GetChildData	include/MarkupSTL.h	/^        std::string GetChildData() const { return x_GetData(m_iPosChild); };$/;"	f	class:CMarkupSTL
+GetChildSubDoc	include/MarkupSTL.h	/^        std::string GetChildSubDoc() const { return x_GetSubDoc(m_iPosChild); };$/;"	f	class:CMarkupSTL
+GetChildTagName	include/MarkupSTL.h	/^        std::string GetChildTagName() const { return x_GetTagName(m_iPosChild); };$/;"	f	class:CMarkupSTL
+GetData	include/MarkupSTL.h	/^        std::string GetData() const { return x_GetData(m_iPos); };$/;"	f	class:CMarkupSTL
+GetDoc	include/MarkupSTL.h	/^        const std::string& GetDoc() const { return m_strDoc; };$/;"	f	class:CMarkupSTL
+GetDocFlags	include/MarkupSTL.h	/^        int GetDocFlags() const { return m_nFlags; };$/;"	f	class:CMarkupSTL
+GetElemContent	include/MarkupSTL.h	/^        std::string GetElemContent() const { return x_GetElemContent(m_iPos); };$/;"	f	class:CMarkupSTL
+GetError	include/MarkupSTL.h	/^        const std::string& GetError() const { return m_strError; };$/;"	f	class:CMarkupSTL
+GetNodeType	include/MarkupSTL.h	/^        int GetNodeType() { return m_nNodeType; };$/;"	f	class:CMarkupSTL
+GetSize	include/MarkupSTL.h	/^                int GetSize() const { return nSize; };$/;"	f	struct:CMarkupSTL::PosArray
+GetSubDoc	include/MarkupSTL.h	/^        std::string GetSubDoc() const { return x_GetSubDoc(m_iPos); };$/;"	f	class:CMarkupSTL
+GetTagName	src/MarkupSTL.cpp	/^string CMarkupSTL::GetTagName() const$/;"	f	class:CMarkupSTL
+HEX	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	339;"	d	file:
+HEX	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	326;"	d	file:
+Hash	include/MarkupSTL.h	/^                int Hash( const char* szName ) { int n=0; while (*szName) n += *szName++; return n % SPM_SIZE; };$/;"	f	struct:CMarkupSTL::SavedPosMap
+ID_VOID_MAIN	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	9;"	d	file:
+INFO_LOG_LEVEL_ID	include/sh_filelog.h	/^static const int  INFO_LOG_LEVEL_ID=    2;$/;"	m	namespace:sh
+INFO_LOG_LEVEL_NAME	include/sh_filelog.h	/^static const char*  INFO_LOG_LEVEL_NAME=    "info";$/;"	m	namespace:sh
+InitDocFlags	include/MarkupSTL.h	/^        void InitDocFlags()$/;"	f	class:CMarkupSTL
+InsertChildElem	include/MarkupSTL.h	/^        bool InsertChildElem( const char* szName, const char* szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_INSERT|MNF_CHILD); };$/;"	f	class:CMarkupSTL
+InsertChildElem	include/MarkupSTL.h	/^        bool InsertChildElem( const char* szName, int nValue, int nFlags=0 ) { return x_AddElem(szName,nValue,nFlags|MNF_INSERT|MNF_CHILD); };$/;"	f	class:CMarkupSTL
+InsertChildSubDoc	include/MarkupSTL.h	/^        bool InsertChildSubDoc( const char* szSubDoc ) { return x_AddSubDoc(szSubDoc,MNF_CHILD|MNF_INSERT); };$/;"	f	class:CMarkupSTL
+InsertElem	include/MarkupSTL.h	/^        bool InsertElem( const char* szName, const char* szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_INSERT); };$/;"	f	class:CMarkupSTL
+InsertElem	include/MarkupSTL.h	/^        bool InsertElem( const char* szName, int nValue, int nFlags=0 ) { return x_AddElem(szName,nValue,nFlags|MNF_INSERT); };$/;"	f	class:CMarkupSTL
+InsertNode	include/MarkupSTL.h	/^        bool InsertNode( int nType, const char* szText ) { return x_AddNode(nType,szText,MNF_INSERT); };$/;"	f	class:CMarkupSTL
+InsertSubDoc	include/MarkupSTL.h	/^        bool InsertSubDoc( const char* szSubDoc ) { return x_AddSubDoc(szSubDoc,MNF_INSERT); };$/;"	f	class:CMarkupSTL
+IntoElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::IntoElem()$/;"	f	class:CMarkupSTL
+IsEmptyElement	include/MarkupSTL.h	/^                bool IsEmptyElement() { return (StartTagLen()==nLength)?true:false; };$/;"	f	struct:CMarkupSTL::ElemPos
+IsWellFormed	src/MarkupSTL.cpp	/^bool CMarkupSTL::IsWellFormed()$/;"	f	class:CMarkupSTL
+Length	include/MarkupSTL.h	/^                int Length() const { return nR - nL + 1; };$/;"	f	struct:CMarkupSTL::TokenPos
+Level	include/MarkupSTL.h	/^                int Level() const { return nFlags & EP_LEVMASK; };$/;"	f	struct:CMarkupSTL::ElemPos
+Load	src/MarkupSTL.cpp	/^bool CMarkupSTL::Load( const char* szFileName )$/;"	f	class:CMarkupSTL
+MARKUP_SETDEBUGSTATE	include/MarkupSTL.h	25;"	d
+MARKUP_SETDEBUGSTATE	include/MarkupSTL.h	27;"	d
+MAX_PATH	src/sh_filelog.cpp	19;"	d	file:
+MDF_IGNORECASE	include/MarkupSTL.h	/^                MDF_IGNORECASE = 8,$/;"	e	enum:CMarkupSTL::MarkupDocFlags
+MEMORY_LOG	include/sh_filelog.h	128;"	d
+MEMORY_LOG_TYPE	include/sh_filelog.h	/^static const int  MEMORY_LOG_TYPE=2;$/;"	m	namespace:sh
+MNF_CHILD	include/MarkupSTL.h	/^                MNF_CHILD      = 0x004000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_DELETED	include/MarkupSTL.h	/^                MNF_DELETED    = 0x020000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_EMPTY	include/MarkupSTL.h	/^                MNF_EMPTY      = 0x010000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_ESCAPEQUOTES	include/MarkupSTL.h	/^                MNF_ESCAPEQUOTES  = 0x100,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNF_FIRST	include/MarkupSTL.h	/^                MNF_FIRST      = 0x080000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_ILLDATA	include/MarkupSTL.h	/^                MNF_ILLDATA    = 0x200000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNF_ILLFORMED	include/MarkupSTL.h	/^                MNF_ILLFORMED  = 0x800000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_INSERT	include/MarkupSTL.h	/^                MNF_INSERT     = 0x002000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_NONENDED	include/MarkupSTL.h	/^                MNF_NONENDED   = 0x100000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNF_PUBLIC	include/MarkupSTL.h	/^                MNF_PUBLIC     = 0x300000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_QUOTED	include/MarkupSTL.h	/^                MNF_QUOTED     = 0x008000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_REPLACE	include/MarkupSTL.h	/^                MNF_REPLACE    = 0x001000,$/;"	e	enum:CMarkupSTL::MarkupNodeFlagsInternal
+MNF_WITHCDATA	include/MarkupSTL.h	/^                MNF_WITHCDATA      = 0x01,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNF_WITHNOEND	include/MarkupSTL.h	/^                MNF_WITHNOEND      = 0x10,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNF_WITHNOLINES	include/MarkupSTL.h	/^                MNF_WITHNOLINES    = 0x02,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNF_WITHREFS	include/MarkupSTL.h	/^                MNF_WITHREFS       = 0x08,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNF_WITHXHTMLSPACE	include/MarkupSTL.h	/^                MNF_WITHXHTMLSPACE = 0x04,$/;"	e	enum:CMarkupSTL::MarkupNodeFlags
+MNT_CDATA_SECTION	include/MarkupSTL.h	/^                MNT_CDATA_SECTION                       = 8,  \/\/ 0x08$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_COMMENT	include/MarkupSTL.h	/^                MNT_COMMENT                                     = 32, \/\/ 0x20$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_DOCUMENT_TYPE	include/MarkupSTL.h	/^                MNT_DOCUMENT_TYPE                       = 64, \/\/ 0x40$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_ELEMENT	include/MarkupSTL.h	/^                MNT_ELEMENT                                     = 1,  \/\/ 0x01$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_EXCLUDE_WHITESPACE	include/MarkupSTL.h	/^                MNT_EXCLUDE_WHITESPACE          = 123,\/\/ 0x7b$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_LONE_END_TAG	include/MarkupSTL.h	/^                MNT_LONE_END_TAG                        = 128,\/\/ 0x80$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_NODE_ERROR	include/MarkupSTL.h	/^                MNT_NODE_ERROR              = 32768 \/\/ 0x8000$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_PROCESSING_INSTRUCTION	include/MarkupSTL.h	/^                MNT_PROCESSING_INSTRUCTION      = 16, \/\/ 0x10$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_TEXT	include/MarkupSTL.h	/^                MNT_TEXT                                        = 2,  \/\/ 0x02$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MNT_WHITESPACE	include/MarkupSTL.h	/^                MNT_WHITESPACE                          = 4,  \/\/ 0x04$/;"	e	enum:CMarkupSTL::MarkupNodeType
+MarkupDocFlags	include/MarkupSTL.h	/^        enum MarkupDocFlags$/;"	g	class:CMarkupSTL
+MarkupNodeFlags	include/MarkupSTL.h	/^        enum MarkupNodeFlags$/;"	g	class:CMarkupSTL
+MarkupNodeFlagsInternal	include/MarkupSTL.h	/^        enum MarkupNodeFlagsInternal$/;"	g	class:CMarkupSTL
+MarkupNodeType	include/MarkupSTL.h	/^        enum MarkupNodeType$/;"	g	class:CMarkupSTL
+Match	include/MarkupSTL.h	/^                bool Match( const char* szName )$/;"	f	struct:CMarkupSTL::TokenPos
+Match	include/MarkupSTL.h	/^                bool Match( const std::string& strName ) { return Match(strName.c_str()); };$/;"	f	struct:CMarkupSTL::TokenPos
+NodePos	include/MarkupSTL.h	/^                NodePos( int n ) { nFlags=n; nNodeType=0; nStart=0; nLength=0; };$/;"	f	struct:CMarkupSTL::NodePos
+NodePos	include/MarkupSTL.h	/^                NodePos() {};$/;"	f	struct:CMarkupSTL::NodePos
+NodePos	include/MarkupSTL.h	/^        struct NodePos$/;"	s	class:CMarkupSTL
+NodeStack	include/MarkupSTL.h	/^                NodeStack() { nTop=-1; nSize=0; pN=NULL; };$/;"	f	struct:CMarkupSTL::NodeStack
+NodeStack	include/MarkupSTL.h	/^        struct NodeStack$/;"	s	class:CMarkupSTL
+OutOfElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::OutOfElem()$/;"	f	class:CMarkupSTL
+PA_SEGBITS	include/MarkupSTL.h	/^                enum { PA_SEGBITS = 16, PA_SEGMASK = 0xffff };$/;"	e	enum:CMarkupSTL::PosArray::__anon3
+PA_SEGMASK	include/MarkupSTL.h	/^                enum { PA_SEGBITS = 16, PA_SEGMASK = 0xffff };$/;"	e	enum:CMarkupSTL::PosArray::__anon3
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	213;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	216;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	219;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	222;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	225;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	228;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	231;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	234;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	237;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	240;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	243;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	246;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	249;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	255;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	258;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	261;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	264;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	267;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	270;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	273;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	276;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	279;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	282;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	285;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	288;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	291;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	200;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	203;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	206;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	209;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	212;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	215;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	218;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	221;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	224;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	227;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	230;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	233;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	236;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	242;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	245;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	248;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	251;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	254;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	257;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	260;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	263;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	266;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	269;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	272;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	275;"	d	file:
+PLATFORM_ID	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	278;"	d	file:
+PosArray	include/MarkupSTL.h	/^                PosArray() { Clear(); };$/;"	f	struct:CMarkupSTL::PosArray
+PosArray	include/MarkupSTL.h	/^        struct PosArray$/;"	s	class:CMarkupSTL
+RM	build/tests/test-filelog/Makefile	/^RM = \/usr\/local\/bin\/cmake -E remove -f$/;"	m
+ReadTextFile	src/MarkupSTL.cpp	/^bool CMarkupSTL::ReadTextFile( const char* szFileName, string& strDoc, string* pstrError, int* pnFlags )$/;"	f	class:CMarkupSTL
+Release	include/MarkupSTL.h	/^                void Release() { for (int n=0;n<SPM_SIZE;++n) if (pTable[n]) delete[] pTable[n]; delete[] pTable; };$/;"	f	struct:CMarkupSTL::SavedPosMap
+Release	include/MarkupSTL.h	/^                void Release() { for (int n=0;n<SegsUsed();++n) delete[] (char*)pSegs[n]; if (pSegs) delete[] (char*)pSegs; };$/;"	f	struct:CMarkupSTL::PosArray
+Remove	include/MarkupSTL.h	/^                void Remove() { --nTop; };$/;"	f	struct:CMarkupSTL::NodeStack
+RemoveAll	include/MarkupSTL.h	/^                void RemoveAll() { Release(); Clear(); };$/;"	f	struct:CMarkupSTL::PosArray
+RemoveAll	include/MarkupSTL.h	/^                void RemoveAll() { if (pTable) Release(); pTable=NULL; };$/;"	f	struct:CMarkupSTL::SavedPosMap
+RemoveChildElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::RemoveChildElem()$/;"	f	class:CMarkupSTL
+RemoveElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::RemoveElem()$/;"	f	class:CMarkupSTL
+RemoveNode	src/MarkupSTL.cpp	/^bool CMarkupSTL::RemoveNode()$/;"	f	class:CMarkupSTL
+ResetChildPos	include/MarkupSTL.h	/^        void ResetChildPos() { x_SetPos(m_iPosParent,m_iPos,0); };$/;"	f	class:CMarkupSTL
+ResetMainPos	include/MarkupSTL.h	/^        void ResetMainPos() { x_SetPos(m_iPosParent,0,0); };$/;"	f	class:CMarkupSTL
+ResetPos	include/MarkupSTL.h	/^        void ResetPos() { x_SetPos(0,0,0); };$/;"	f	class:CMarkupSTL
+RestorePos	src/MarkupSTL.cpp	/^bool CMarkupSTL::RestorePos( const char* szPosName )$/;"	f	class:CMarkupSTL
+SHARE_LOG_DEBUG	include/sh_filelog.h	114;"	d
+SHARE_LOG_ERROR	include/sh_filelog.h	117;"	d
+SHARE_LOG_FATAL	include/sh_filelog.h	118;"	d
+SHARE_LOG_INFO	include/sh_filelog.h	115;"	d
+SHARE_LOG_WARN	include/sh_filelog.h	116;"	d
+SHELL	build/tests/test-filelog/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHOW_ERROR_MSG	src/sh_filelog.cpp	17;"	d	file:
+SH_LOG_TYPE	include/sh_filelog.h	/^static const int  SH_LOG_TYPE=0;$/;"	m	namespace:sh
+SPM_CHILD	include/MarkupSTL.h	/^                enum { SPM_SIZE = 7, SPM_MAIN = 1, SPM_CHILD = 2, SPM_USED = 4, SPM_LAST = 8 };$/;"	e	enum:CMarkupSTL::SavedPosMap::__anon2
+SPM_LAST	include/MarkupSTL.h	/^                enum { SPM_SIZE = 7, SPM_MAIN = 1, SPM_CHILD = 2, SPM_USED = 4, SPM_LAST = 8 };$/;"	e	enum:CMarkupSTL::SavedPosMap::__anon2
+SPM_MAIN	include/MarkupSTL.h	/^                enum { SPM_SIZE = 7, SPM_MAIN = 1, SPM_CHILD = 2, SPM_USED = 4, SPM_LAST = 8 };$/;"	e	enum:CMarkupSTL::SavedPosMap::__anon2
+SPM_SIZE	include/MarkupSTL.h	/^                enum { SPM_SIZE = 7, SPM_MAIN = 1, SPM_CHILD = 2, SPM_USED = 4, SPM_LAST = 8 };$/;"	e	enum:CMarkupSTL::SavedPosMap::__anon2
+SPM_USED	include/MarkupSTL.h	/^                enum { SPM_SIZE = 7, SPM_MAIN = 1, SPM_CHILD = 2, SPM_USED = 4, SPM_LAST = 8 };$/;"	e	enum:CMarkupSTL::SavedPosMap::__anon2
+SQL_LOG_DEBUG	include/sh_filelog.h	130;"	d
+SQL_LOG_ERROR	include/sh_filelog.h	133;"	d
+SQL_LOG_FATAL	include/sh_filelog.h	134;"	d
+SQL_LOG_INFO	include/sh_filelog.h	131;"	d
+SQL_LOG_TYPE	include/sh_filelog.h	/^static const int  SQL_LOG_TYPE=3;$/;"	m	namespace:sh
+SQL_LOG_WARN	include/sh_filelog.h	132;"	d
+SUFFIXES	build/tests/test-filelog/Makefile	/^SUFFIXES =$/;"	m
+Save	src/MarkupSTL.cpp	/^bool CMarkupSTL::Save( const char* szFileName )$/;"	f	class:CMarkupSTL
+SavePos	src/MarkupSTL.cpp	/^bool CMarkupSTL::SavePos( const char* szPosName )$/;"	f	class:CMarkupSTL
+SavedPos	include/MarkupSTL.h	/^                SavedPos() { nSavedPosFlags=0; iPos=0; };$/;"	f	struct:CMarkupSTL::SavedPos
+SavedPos	include/MarkupSTL.h	/^        struct SavedPos$/;"	s	class:CMarkupSTL
+SavedPosMap	include/MarkupSTL.h	/^                SavedPosMap() { pTable = NULL; };$/;"	f	struct:CMarkupSTL::SavedPosMap
+SavedPosMap	include/MarkupSTL.h	/^        struct SavedPosMap$/;"	s	class:CMarkupSTL
+SegsUsed	include/MarkupSTL.h	/^                int SegsUsed() const { return ((nSize-1)>>PA_SEGBITS) + 1; };$/;"	f	struct:CMarkupSTL::PosArray
+SetAttrib	include/MarkupSTL.h	/^        bool SetAttrib( const char* szAttrib, const char* szValue ) { return x_SetAttrib(m_iPos,szAttrib,szValue); };$/;"	f	class:CMarkupSTL
+SetAttrib	include/MarkupSTL.h	/^        bool SetAttrib( const char* szAttrib, int nValue ) { return x_SetAttrib(m_iPos,szAttrib,nValue); };$/;"	f	class:CMarkupSTL
+SetChildAttrib	include/MarkupSTL.h	/^        bool SetChildAttrib( const char* szAttrib, const char* szValue ) { return x_SetAttrib(m_iPosChild,szAttrib,szValue); };$/;"	f	class:CMarkupSTL
+SetChildAttrib	include/MarkupSTL.h	/^        bool SetChildAttrib( const char* szAttrib, int nValue ) { return x_SetAttrib(m_iPosChild,szAttrib,nValue); };$/;"	f	class:CMarkupSTL
+SetChildData	include/MarkupSTL.h	/^        bool SetChildData( const char* szData, int nFlags=0 ) { return x_SetData(m_iPosChild,szData,nFlags); };$/;"	f	class:CMarkupSTL
+SetChildData	include/MarkupSTL.h	/^        bool SetChildData( int nValue ) { return x_SetData(m_iPosChild,nValue); };$/;"	f	class:CMarkupSTL
+SetData	include/MarkupSTL.h	/^        bool SetData( const char* szData, int nFlags=0 ) { return x_SetData(m_iPos,szData,nFlags); };$/;"	f	class:CMarkupSTL
+SetData	include/MarkupSTL.h	/^        bool SetData( int nValue ) { return x_SetData(m_iPos,nValue); };$/;"	f	class:CMarkupSTL
+SetDoc	src/MarkupSTL.cpp	/^bool CMarkupSTL::SetDoc( const char* szDoc )$/;"	f	class:CMarkupSTL
+SetDocFlags	include/MarkupSTL.h	/^        void SetDocFlags( int nFlags ) { m_nFlags = nFlags; };$/;"	f	class:CMarkupSTL
+SetElemContent	include/MarkupSTL.h	/^        bool SetElemContent( const char* szContent ) { return x_SetElemContent(szContent); };$/;"	f	class:CMarkupSTL
+SetEndTagLen	include/MarkupSTL.h	/^                void SetEndTagLen( int n ) { nTagLengths = (nTagLengths & EP_STMASK) + (n << EP_STBITS); };$/;"	f	struct:CMarkupSTL::ElemPos
+SetLevel	include/MarkupSTL.h	/^                void SetLevel( int nLev ) { nFlags = (nFlags & ~EP_LEVMASK) | nLev; };$/;"	f	struct:CMarkupSTL::ElemPos
+SetStartTagLen	include/MarkupSTL.h	/^                void SetStartTagLen( int n ) { nTagLengths = (nTagLengths & ~EP_STMASK) + n; };$/;"	f	struct:CMarkupSTL::ElemPos
+StartAfter	include/MarkupSTL.h	/^                int StartAfter() const { return nStart + nLength; };$/;"	f	struct:CMarkupSTL::ElemPos
+StartContent	include/MarkupSTL.h	/^                int StartContent() const { return nStart + StartTagLen(); };$/;"	f	struct:CMarkupSTL::ElemPos
+StartTagLen	include/MarkupSTL.h	/^                int StartTagLen() const { return (nTagLengths & EP_STMASK); };$/;"	f	struct:CMarkupSTL::ElemPos
+TokenPos	include/MarkupSTL.h	/^                TokenPos( const char* sz, int n ) { Clear(); szDoc=sz; nTokenFlags=n; };$/;"	f	struct:CMarkupSTL::TokenPos
+TokenPos	include/MarkupSTL.h	/^                TokenPos( const std::string& str, int n ) { Clear(); szDoc=str.c_str(); nTokenFlags=n; };$/;"	f	struct:CMarkupSTL::TokenPos
+TokenPos	include/MarkupSTL.h	/^        struct TokenPos$/;"	s	class:CMarkupSTL
+Top	include/MarkupSTL.h	/^                NodePos& Top() { return pN[nTop]; };$/;"	f	struct:CMarkupSTL::NodeStack
+TopIndex	include/MarkupSTL.h	/^                int TopIndex() { return nTop; };$/;"	f	struct:CMarkupSTL::NodeStack
+USER_LOG_DEBUG	include/sh_filelog.h	122;"	d
+USER_LOG_ERROR	include/sh_filelog.h	125;"	d
+USER_LOG_FATAL	include/sh_filelog.h	126;"	d
+USER_LOG_INFO	include/sh_filelog.h	123;"	d
+USER_LOG_TYPE	include/sh_filelog.h	/^static const int  USER_LOG_TYPE=1;$/;"	m	namespace:sh
+USER_LOG_WARN	include/sh_filelog.h	124;"	d
+UnescapeText	src/MarkupSTL.cpp	/^string CMarkupSTL::UnescapeText( const char* szText, int nTextLength \/*=-1*\/ )$/;"	f	class:CMarkupSTL
+WARN_LOG_LEVEL_ID	include/sh_filelog.h	/^static const int  WARN_LOG_LEVEL_ID=    3;$/;"	m	namespace:sh
+WARN_LOG_LEVEL_NAME	include/sh_filelog.h	/^static const char*  WARN_LOG_LEVEL_NAME=    "warn";$/;"	m	namespace:sh
+WriteTextFile	src/MarkupSTL.cpp	/^bool CMarkupSTL::WriteTextFile( const char* szFileName, string& strDoc, string* pstrError, int* pnFlags )$/;"	f	class:CMarkupSTL
+_DS	include/MarkupSTL.h	24;"	d
+__SHARE_FILE_LOG_H__	include/sh_filelog.h	2;"	d
+__SHARE_TYPE_H__	include/sh_type.h	2;"	d
+_init	src/sh_filelog.cpp	/^int sh::file_log::_init()$/;"	f	class:sh::file_log
+_load	src/sh_filelog.cpp	/^int sh::file_log::_load()$/;"	f	class:sh::file_log
+check_log	src/sh_filelog.cpp	/^    inline log_info* check_log(const unsigned int log_type_id, const int log_level)$/;"	f	class:sh::file_log
+current_run_directory	src/sh_filelog.cpp	/^const char* current_run_directory()$/;"	f	namespace:sh
+debug	src/sh_filelog.cpp	/^        uint8   debug; \/\/ 如果非 0 则表示打开$/;"	m	struct:sh::file_log::log_level_set	file:
+error	src/sh_filelog.cpp	/^        uint8   error;$/;"	m	struct:sh::file_log::log_level_set	file:
+fatal	src/sh_filelog.cpp	/^        uint8   fatal;$/;"	m	struct:sh::file_log::log_level_set	file:
+file_log	src/sh_filelog.cpp	/^class file_log$/;"	c	namespace:sh	file:
+file_log	src/sh_filelog.cpp	/^sh::file_log::file_log()$/;"	f	class:sh::file_log
+file_log_handle	include/sh_filelog.h	/^typedef void* file_log_handle;$/;"	t	namespace:sh
+filename	src/sh_filelog.cpp	/^        std::string             filename;  \/\/ 日志的文件名称$/;"	m	struct:sh::file_log::log_info	file:
+flog_mutex	src/sh_filelog.cpp	/^        std::mutex              flog_mutex;    \/\/ 写日志文件的锁，每一个日志文件对应一个锁$/;"	m	struct:sh::file_log::log_info	file:
+folder_name	src/sh_filelog.cpp	/^        std::string  folder_name;   \/\/ 日志的目录$/;"	m	struct:sh::file_log::path_file_head_trail	file:
+fp	src/sh_filelog.cpp	/^        FILE*                   fp;        \/\/ 当前打开日志文件的句柄$/;"	m	struct:sh::file_log::log_info	file:
+iElemChild	include/MarkupSTL.h	/^                int iElemChild; \/\/ first child$/;"	m	struct:CMarkupSTL::ElemPos
+iElemNext	include/MarkupSTL.h	/^                int iElemNext;$/;"	m	struct:CMarkupSTL::ElemPos
+iElemParent	include/MarkupSTL.h	/^                int iElemParent;$/;"	m	struct:CMarkupSTL::ElemPos
+iElemPrev	include/MarkupSTL.h	/^                int iElemPrev; \/\/ if this is first child, iElemPrev points to last$/;"	m	struct:CMarkupSTL::ElemPos
+iPos	include/MarkupSTL.h	/^                int iPos;$/;"	m	struct:CMarkupSTL::SavedPos
+id	src/sh_filelog.cpp	/^        uint16                  id;$/;"	m	struct:sh::file_log::log_info	file:
+info	src/sh_filelog.cpp	/^        uint8   info;$/;"	m	struct:sh::file_log::log_level_set	file:
+info_arch	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v
+info_arch	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v
+info_compiler	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v
+info_compiler	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v
+info_platform	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v
+info_platform	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v
+info_version	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version[] = {$/;"	v
+info_version	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v
+instance	src/sh_filelog.cpp	/^    static file_log& instance()$/;"	f	class:sh::file_log
+int16	include/sh_type.h	/^typedef short               int16;$/;"	t	namespace:sh
+int32	include/sh_type.h	/^typedef int                 int32;$/;"	t	namespace:sh
+int64	include/sh_type.h	/^typedef long long           int64;$/;"	t	namespace:sh
+int8	include/sh_type.h	/^typedef char                int8;$/;"	t	namespace:sh
+last_tm	src/sh_filelog.cpp	/^        struct tm               last_tm;     $/;"	m	struct:sh::file_log::log_info	typeref:struct:sh::file_log::log_info::tm	file:
+last_write_time	src/sh_filelog.cpp	/^        time_t                  last_write_time; \/\/ 最后一次写日志的时刻$/;"	m	struct:sh::file_log::log_info	file:
+levels	src/sh_filelog.cpp	/^        log_level_set           levels;    \/\/ 当前这个日志文件的写级别配置$/;"	m	struct:sh::file_log::log_info	file:
+log	src/sh_filelog.cpp	/^void sh::file_log::log(file_log::log_info& log, const char* log_content)$/;"	f	class:sh::file_log
+log_file_head	src/sh_filelog.cpp	/^        std::string  log_file_head; \/\/ 日志文件名称的首部$/;"	m	struct:sh::file_log::path_file_head_trail	file:
+log_file_trail	src/sh_filelog.cpp	/^        std::string  log_file_trail;\/\/ 日志文件的后缀$/;"	m	struct:sh::file_log::path_file_head_trail	file:
+log_info	src/sh_filelog.cpp	/^        log_info() : fp(NULL),id(0) {}$/;"	f	struct:sh::file_log::log_info
+log_info	src/sh_filelog.cpp	/^    struct log_info$/;"	s	class:sh::file_log	file:
+log_level_set	src/sh_filelog.cpp	/^        log_level_set() : debug(0),info(0),warn(0),error(0),fatal(0)$/;"	f	struct:sh::file_log::log_level_set
+log_level_set	src/sh_filelog.cpp	/^    struct log_level_set$/;"	s	class:sh::file_log	file:
+logs_info_type	src/sh_filelog.cpp	/^    typedef struct log_info** logs_info_type;$/;"	t	class:sh::file_log	typeref:struct:sh::file_log::log_info	file:
+m_aPos	include/MarkupSTL.h	/^        PosArray m_aPos;$/;"	m	class:CMarkupSTL
+m_has_init	src/sh_filelog.cpp	/^    bool                m_has_init;$/;"	m	class:sh::file_log	file:
+m_iPos	include/MarkupSTL.h	/^        int m_iPos;$/;"	m	class:CMarkupSTL
+m_iPosChild	include/MarkupSTL.h	/^        int m_iPosChild;$/;"	m	class:CMarkupSTL
+m_iPosDeleted	include/MarkupSTL.h	/^        int m_iPosDeleted;$/;"	m	class:CMarkupSTL
+m_iPosFree	include/MarkupSTL.h	/^        int m_iPosFree;$/;"	m	class:CMarkupSTL
+m_iPosParent	include/MarkupSTL.h	/^        int m_iPosParent;$/;"	m	class:CMarkupSTL
+m_logs_info	src/sh_filelog.cpp	/^    logs_info_type      m_logs_info;$/;"	m	class:sh::file_log	file:
+m_mapSavedPos	include/MarkupSTL.h	/^        SavedPosMap m_mapSavedPos;$/;"	m	class:CMarkupSTL
+m_max_log_id	src/sh_filelog.cpp	/^    uint16              m_max_log_id;$/;"	m	class:sh::file_log	file:
+m_nFlags	include/MarkupSTL.h	/^        int m_nFlags;$/;"	m	class:CMarkupSTL
+m_nNodeLength	include/MarkupSTL.h	/^        int m_nNodeLength;$/;"	m	class:CMarkupSTL
+m_nNodeOffset	include/MarkupSTL.h	/^        int m_nNodeOffset;$/;"	m	class:CMarkupSTL
+m_nNodeType	include/MarkupSTL.h	/^        int m_nNodeType;$/;"	m	class:CMarkupSTL
+m_pChildDS	include/MarkupSTL.h	/^        const char* m_pChildDS;$/;"	m	class:CMarkupSTL
+m_pMainDS	include/MarkupSTL.h	/^        const char* m_pMainDS;$/;"	m	class:CMarkupSTL
+m_strDoc	include/MarkupSTL.h	/^        std::string m_strDoc;$/;"	m	class:CMarkupSTL
+m_strError	include/MarkupSTL.h	/^        std::string m_strError;$/;"	m	class:CMarkupSTL
+main	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	/^int main(int argc, char* argv[])$/;"	f
+main	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f
+main	build/tests/test-filelog/CMakeFiles/2.8.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	tests/test_filelog.cc	/^int main()$/;"	f
+nFlags	include/MarkupSTL.h	/^                int nFlags; \/\/ 16 bits flags, 16 bits level 65536 depth limit$/;"	m	struct:CMarkupSTL::ElemPos
+nFlags	include/MarkupSTL.h	/^                int nFlags;$/;"	m	struct:CMarkupSTL::NodePos
+nL	include/MarkupSTL.h	/^                int nL;$/;"	m	struct:CMarkupSTL::TokenPos
+nLength	include/MarkupSTL.h	/^                int nLength;$/;"	m	struct:CMarkupSTL::ElemPos
+nLength	include/MarkupSTL.h	/^                int nLength;$/;"	m	struct:CMarkupSTL::NodePos
+nNext	include/MarkupSTL.h	/^                int nNext;$/;"	m	struct:CMarkupSTL::TokenPos
+nNodeType	include/MarkupSTL.h	/^                int nNodeType;$/;"	m	struct:CMarkupSTL::NodePos
+nPreSpaceLength	include/MarkupSTL.h	/^                int nPreSpaceLength;$/;"	m	struct:CMarkupSTL::TokenPos
+nPreSpaceStart	include/MarkupSTL.h	/^                int nPreSpaceStart;$/;"	m	struct:CMarkupSTL::TokenPos
+nR	include/MarkupSTL.h	/^                int nR;$/;"	m	struct:CMarkupSTL::TokenPos
+nSavedPosFlags	include/MarkupSTL.h	/^                int nSavedPosFlags;$/;"	m	struct:CMarkupSTL::SavedPos
+nSegs	include/MarkupSTL.h	/^                int nSegs;$/;"	m	struct:CMarkupSTL::PosArray
+nSize	include/MarkupSTL.h	/^                int nSize;$/;"	m	struct:CMarkupSTL::NodeStack
+nSize	include/MarkupSTL.h	/^                int nSize;$/;"	m	struct:CMarkupSTL::PosArray
+nStart	include/MarkupSTL.h	/^                int nStart;$/;"	m	struct:CMarkupSTL::ElemPos
+nStart	include/MarkupSTL.h	/^                int nStart;$/;"	m	struct:CMarkupSTL::NodePos
+nTagLengths	include/MarkupSTL.h	/^                int nTagLengths; \/\/ 22 bits 4MB limit for start tag, 10 bits 1K limit for end tag$/;"	m	struct:CMarkupSTL::ElemPos
+nTokenFlags	include/MarkupSTL.h	/^                int nTokenFlags;$/;"	m	struct:CMarkupSTL::TokenPos
+nTop	include/MarkupSTL.h	/^                int nTop;$/;"	m	struct:CMarkupSTL::NodeStack
+name	src/sh_filelog.cpp	/^        std::string             name;$/;"	m	struct:sh::file_log::log_info	file:
+operator =	src/MarkupSTL.cpp	/^void CMarkupSTL::operator=( const CMarkupSTL& markup )$/;"	f	class:CMarkupSTL
+operator []	include/MarkupSTL.h	/^                ElemPos& operator[](int n) const { return pSegs[n>>PA_SEGBITS][n&PA_SEGMASK]; };$/;"	f	struct:CMarkupSTL::PosArray
+pN	include/MarkupSTL.h	/^                NodePos* pN;$/;"	m	struct:CMarkupSTL::NodeStack
+pSegs	include/MarkupSTL.h	/^                ElemPos** pSegs;$/;"	m	struct:CMarkupSTL::PosArray
+pTable	include/MarkupSTL.h	/^                SavedPos** pTable;$/;"	m	struct:CMarkupSTL::SavedPosMap
+path	src/sh_filelog.cpp	/^        path_file_head_trail    path; $/;"	m	struct:sh::file_log::log_info	file:
+path_file_head_trail	src/sh_filelog.cpp	/^    struct path_file_head_trail$/;"	s	class:sh::file_log	file:
+sg_log_id_text	include/sh_filelog.h	/^static const char* sg_log_id_text[] = {$/;"	m	namespace:sh
+sh	include/sh_filelog.h	/^namespace sh$/;"	n
+sh	include/sh_type.h	/^namespace sh$/;"	n
+sh	src/sh_filelog.cpp	/^namespace sh$/;"	n	file:
+share_check_file_log	src/sh_filelog.cpp	/^sh::file_log_handle sh::share_check_file_log(const unsigned int log_type_id, const int log_level)$/;"	f	class:sh
+share_file_log	src/sh_filelog.cpp	/^void sh::share_file_log(sh::file_log_handle log_handle, const char* log_content)$/;"	f	class:sh
+strMeta	include/MarkupSTL.h	/^                std::string strMeta;$/;"	m	struct:CMarkupSTL::NodePos
+strName	include/MarkupSTL.h	/^                std::string strName;$/;"	m	struct:CMarkupSTL::SavedPos
+strnicmp	include/MarkupSTL.h	31;"	d
+strnicmp	include/MarkupSTL.h	33;"	d
+szDoc	include/MarkupSTL.h	/^                const char* szDoc;$/;"	m	struct:CMarkupSTL::TokenPos
+uint	include/sh_type.h	/^typedef unsigned int        uint;$/;"	t	namespace:sh
+uint16	include/sh_type.h	/^typedef unsigned short      uint16;$/;"	t	namespace:sh
+uint32	include/sh_type.h	/^typedef unsigned int        uint32;$/;"	t	namespace:sh
+uint64	include/sh_type.h	/^typedef unsigned long long  uint64;$/;"	t	namespace:sh
+uint8	include/sh_type.h	/^typedef unsigned char       uint8;$/;"	t	namespace:sh
+ulong	include/sh_type.h	/^typedef unsigned long       ulong;$/;"	t	namespace:sh
+void_ptr	include/sh_type.h	/^typedef void*               void_ptr;$/;"	t	namespace:sh
+warn	src/sh_filelog.cpp	/^        uint8   warn;$/;"	m	struct:sh::file_log::log_level_set	file:
+x_ATTRIBQUOTE	src/MarkupSTL.cpp	21;"	d	file:
+x_AddElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_AddElem( const char* szName, const char* szValue, int nFlags )$/;"	f	class:CMarkupSTL
+x_AddElem	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_AddElem( const char* szName, int nValue, int nFlags )$/;"	f	class:CMarkupSTL
+x_AddNode	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_AddNode( int nNodeType, const char* szText, int nFlags )$/;"	f	class:CMarkupSTL
+x_AddSubDoc	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_AddSubDoc( const char* szSubDoc, int nFlags )$/;"	f	class:CMarkupSTL
+x_Adjust	src/MarkupSTL.cpp	/^void CMarkupSTL::x_Adjust( int iPos, int nShift, bool bAfterPos \/*=false*\/ )$/;"	f	class:CMarkupSTL
+x_AdjustForNode	src/MarkupSTL.cpp	/^void CMarkupSTL::x_AdjustForNode( int iPosParent, int iPos, int nShift )$/;"	f	class:CMarkupSTL
+x_AllocPosArray	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_AllocPosArray( int nNewSize \/*=0*\/ )$/;"	f	class:CMarkupSTL
+x_CheckSavedPos	src/MarkupSTL.cpp	/^void CMarkupSTL::x_CheckSavedPos()$/;"	f	class:CMarkupSTL
+x_CreateNode	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_CreateNode( string& strNode, int nNodeType, const char* szText )$/;"	f	class:CMarkupSTL
+x_DocChange	src/MarkupSTL.cpp	/^void CMarkupSTL::x_DocChange( int nLeft, int nReplace, const string& strInsert )$/;"	f	class:CMarkupSTL
+x_EOL	src/MarkupSTL.cpp	19;"	d	file:
+x_EOLLEN	src/MarkupSTL.cpp	20;"	d	file:
+x_EncodeCDATASection	src/MarkupSTL.cpp	/^string CMarkupSTL::x_EncodeCDATASection( const char* szData )$/;"	f	class:CMarkupSTL
+x_FindAny	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_FindAny( const char* szDoc, int& nChar )$/;"	f	class:CMarkupSTL
+x_FindAttrib	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_FindAttrib( CMarkupSTL::TokenPos& token, const char* szAttrib, int n\/*=0*\/ )$/;"	f	class:CMarkupSTL
+x_FindElem	src/MarkupSTL.cpp	/^int CMarkupSTL::x_FindElem( int iPosParent, int iPos, const char* szPath ) const$/;"	f	class:CMarkupSTL
+x_FindName	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_FindName( CMarkupSTL::TokenPos& token )$/;"	f	class:CMarkupSTL
+x_GetAttrib	src/MarkupSTL.cpp	/^string CMarkupSTL::x_GetAttrib( int iPos, const char* szAttrib ) const$/;"	f	class:CMarkupSTL
+x_GetData	src/MarkupSTL.cpp	/^string CMarkupSTL::x_GetData( int iPos ) const$/;"	f	class:CMarkupSTL
+x_GetElemContent	src/MarkupSTL.cpp	/^string CMarkupSTL::x_GetElemContent( int iPos ) const$/;"	f	class:CMarkupSTL
+x_GetFreePos	include/MarkupSTL.h	/^        int x_GetFreePos()$/;"	f	class:CMarkupSTL
+x_GetPath	src/MarkupSTL.cpp	/^string CMarkupSTL::x_GetPath( int iPos ) const$/;"	f	class:CMarkupSTL
+x_GetSubDoc	src/MarkupSTL.cpp	/^string CMarkupSTL::x_GetSubDoc( int iPos ) const$/;"	f	class:CMarkupSTL
+x_GetTagName	src/MarkupSTL.cpp	/^string CMarkupSTL::x_GetTagName( int iPos ) const$/;"	f	class:CMarkupSTL
+x_GetToken	src/MarkupSTL.cpp	/^string CMarkupSTL::x_GetToken( const CMarkupSTL::TokenPos& token )$/;"	f	class:CMarkupSTL
+x_InsertNew	src/MarkupSTL.cpp	/^int CMarkupSTL::x_InsertNew( int iPosParent, int& iPosRel, CMarkupSTL::NodePos& node )$/;"	f	class:CMarkupSTL
+x_LinkElem	src/MarkupSTL.cpp	/^void CMarkupSTL::x_LinkElem( int iPosParent, int iPosBefore, int iPos )$/;"	f	class:CMarkupSTL
+x_ParseDoc	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_ParseDoc()$/;"	f	class:CMarkupSTL
+x_ParseElem	src/MarkupSTL.cpp	/^int CMarkupSTL::x_ParseElem( int iPosParent, TokenPos& token )$/;"	f	class:CMarkupSTL
+x_ParseNode	src/MarkupSTL.cpp	/^int CMarkupSTL::x_ParseNode( CMarkupSTL::TokenPos& token, CMarkupSTL::NodePos& node )$/;"	f	class:CMarkupSTL
+x_ReleasePos	src/MarkupSTL.cpp	/^int CMarkupSTL::x_ReleasePos( int iPos )$/;"	f	class:CMarkupSTL
+x_ReleaseSubDoc	src/MarkupSTL.cpp	/^int CMarkupSTL::x_ReleaseSubDoc( int iPos )$/;"	f	class:CMarkupSTL
+x_RemoveElem	src/MarkupSTL.cpp	/^int CMarkupSTL::x_RemoveElem( int iPos )$/;"	f	class:CMarkupSTL
+x_RemoveNode	src/MarkupSTL.cpp	/^void CMarkupSTL::x_RemoveNode( int iPosParent, int& iPos, int& nNodeType, int& nNodeOffset, int& nNodeLength )$/;"	f	class:CMarkupSTL
+x_SetAttrib	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_SetAttrib( int iPos, const char* szAttrib, const char* szValue )$/;"	f	class:CMarkupSTL
+x_SetAttrib	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_SetAttrib( int iPos, const char* szAttrib, int nValue )$/;"	f	class:CMarkupSTL
+x_SetData	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_SetData( int iPos, const char* szData, int nFlags )$/;"	f	class:CMarkupSTL
+x_SetData	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_SetData( int iPos, int nValue )$/;"	f	class:CMarkupSTL
+x_SetElemContent	src/MarkupSTL.cpp	/^bool CMarkupSTL::x_SetElemContent( const char* szContent )$/;"	f	class:CMarkupSTL
+x_SetPos	include/MarkupSTL.h	/^        void x_SetPos( int iPosParent, int iPos, int iPosChild )$/;"	f	class:CMarkupSTL
+x_UnlinkElem	src/MarkupSTL.cpp	/^int CMarkupSTL::x_UnlinkElem( int iPos )$/;"	f	class:CMarkupSTL
+~CMarkupSTL	include/MarkupSTL.h	/^        ~CMarkupSTL() {};$/;"	f	class:CMarkupSTL
+~NodeStack	include/MarkupSTL.h	/^                ~NodeStack() { if (pN) delete [] pN; };$/;"	f	struct:CMarkupSTL::NodeStack
+~PosArray	include/MarkupSTL.h	/^                ~PosArray() { Release(); };$/;"	f	struct:CMarkupSTL::PosArray
+~SavedPosMap	include/MarkupSTL.h	/^                ~SavedPosMap() { RemoveAll(); };$/;"	f	struct:CMarkupSTL::SavedPosMap
+~file_log	src/sh_filelog.cpp	/^sh::file_log::~file_log()$/;"	f	class:sh::file_log

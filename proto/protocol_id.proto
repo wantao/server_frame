@@ -1,0 +1,187 @@
+package protoc.protocol_id;
+
+// 注意所有的协议ID都不能出现重复
+// 协议id 的最大值不能超过 65535
+// 一般只要按从小到大顺序增加协议id即可
+
+enum PROTOC_ID_LIMIT
+{
+	CONST_MAX_PROTOC_ID = 65535; 		//  通讯协议最大的ID值
+	
+	// LGC 表示 loginserver 与 client 之间的协议        协议id范围[1,500]
+	CONST_LOGINSERVER_2_CLIENT_BEGIN_PROTOC_ID  		= 1;
+	CONST_LOGINSERVER_2_CLIENT_END_PROTOC_ID  			= 500;
+	
+	// LGT 表示 loginserver 与 gate server 之间的通信	协议id范围[501, 1000]
+	CONST_LOGINSERVER_2_GATESERVER_BEGIN_PROTOC_ID  	= 501;
+	CONST_LOGINSERVER_2_GATESERVER_END_PROTOC_ID  		= 1000;
+	
+	// GTC 表示 gateserver 与 client 通信			    协议id范围[1001, 2000]
+	CONST_GATESERVER_2_CLIENT_BEGIN_PROTOC_ID  			= 1001;
+	CONST_GATESERVER_2_CLIENT_END_PROTOC_ID  			= 2000;
+	
+	// GST 表示 gameserver 与 gateserver 通信			协议id范围[2001, 2500]
+	CONST_GAMESERVER_2_GATESERVER_BEGIN_PROTOC_ID  		= 2001;
+	CONST_GAMESERVER_2_GATESERVER_END_PROTOC_ID  		= 2500;
+	
+	// LDB 表示 loginserver 与 dbserver 通信			协议id范围[2501, 3000]
+	CONST_LOGINSERVER_2_DBSERVER_BEGIN_PROTOC_ID		= 2501;
+	CONST_LOGINSERVER_2_DBSERVER_END_PROTOC_ID 			= 3000;
+	
+	// GGS 表示 gameserver 与 gameserver 通信			协议id范围[3001, 3500]
+	CONST_GAMESERVER_2_GAMESERVER_BEGIN_PROTOC_ID  	= 3001;
+	CONST_GAMESERVER_2_GAMESERVER_END_PROTOC_ID  		= 3500;
+	
+	// NDS 表示 nameserver 与 dbserver 通信			协议id范围[3501, 4000]
+	CONST_NAMESERVER_2_DBSERVER_BEGIN_PROTOC_ID   	= 3501;
+	CONST_NAMESERVER_2_DBSERVER_END_PROTOC_ID 		  = 4000;
+	
+	// GDS 表示 gameserver 与 dbserver (center server) 通信				协议id范围[4001, 5000]
+	CONST_GAMESERVER_2_DBSERVER_BEGIN_PROTOC_ID  		= 4001;
+	CONST_GAMESERVER_2_DBSERVER_END_PROTOC_ID  			= 5000;
+	
+	// GSC 表示 gameserver 与 client 间接通信           协议id范围[5001, 8000], 如果不够可以向后增长
+	CONST_CLIENT_2_GAMESERVER_BEGIN_PROTOC_ID 			= 5001; //gameserver 与 client 间接通信的最小ID值
+	CONST_CLIENT_2_GAMESERVER_END_PROTOC_ID 			  = 8000; //gameserver 与 client 间接通信的最大ID值
+}
+
+
+enum PROTOCOL_ID
+{
+	// LGC 表示 loginserver 与 client 之间的协议        协议id范围[1,500]
+	// LGT 表示 loginserver 与 gate server 之间的通信	协议id范围[501, 1000]
+	// GTC 表示 gateserver 与 client 通信			    协议id范围[1001, 2000]
+	// GST 表示 gameserver 与 gateserver 通信			协议id范围[2001, 2500]
+	// LDB 表示 loginserver 与 dbserver 通信			协议id范围[2501, 3000]
+	// GGS 表示 gameserver 与 gameserver 通信			协议id范围[3001, 3500]
+	// NDS 表示 nameserver 与 dbserver 通信				协议id范围[3501, 4000]
+	// GDS 表示 gameserver 与 dbserver 通信				协议id范围[4001, 5000]
+	// GSC 表示 gameserver 与 client 间接通信     协议id范围[5001, 8000], 如果不够可以向后增长
+
+	///////////////////////////////////BEGIN LGC
+	LGC_ID_LOGIN_REQ 						= 1;	//客户端登录请求
+	LGC_ID_LOGIN_ACK 						= 2;	//返回登录结果
+	LGC_ID_CREATE_ACCOUNT_REQ   = 3;
+	LGC_ID_CREATE_ACCOUNT_ACK   = 4;
+	/////////////////////////////////////END= 500
+	
+	
+	///////////////////////////////////BEGIN LGT
+	LGT_ID_GATE_INFO_RPT 							= 501;	//报告gate的信息
+	LGT_ID_USER_NUMBER_RPT 						= 502;	//报告gate当前在线游戏用户的数量
+	LGT_ID_USER_ONLINE_GATE_REQ 			= 503;	//loginserver 向 gate 报告将有用户连接gate
+	LGT_ID_USER_ONLINE_GATE_ACK 			= 504;	//gate 返回 loginserver，这个用户是否可以连接gate，如果可以，如何连接
+	LGT_ID_HEART_PING									= 505;  //心跳ping
+	LGT_ID_HEART_ACK									= 506;  //心跳应答
+	LGT_ID_RAND_CHECK_REQ							= 507;
+	LGT_ID_RAND_CHECK_ACK							= 508;
+	LGT_ID_UpdateFastAttackBlackAccount = 509; // gate 告诉loginserver , 有高频攻击的黑名单
+	/////////////////////////////////////END=1000
+	
+	
+	///////////////////////////////////BEGIN GTC 1001
+	// 这组协议写在 ProtocType.proto
+	/////////////////////////////////////END= 1500
+	
+	///////////////////////////////////BEGIN GCS 1501
+	
+	/////////////////////////////////////END= 2000
+	
+	
+	///////////////////////////////////BEGIN GST
+	GST_ID_GAME_SERVER_REPORT												= 2001;   //game serve 向 gate server 报告 gamserver 信息
+	GST_ID_GATE_SERVER_REPORT												= 2002;   //gate server 向 game server 报告 gate server 信息
+	GST_ID_GATE_TRANS_CLIENT_MSG										= 2003;   //gate 转发 client msg 到 gameserver
+	GST_ID_GATE_TRANS_GAME_SERVER_MSG								= 2004;   //gate 转发 gameserver msg 到 client
+	GST_ID_NEW_PLAYER_ENTER_GAME_REQ								= 2005;	  //gate 转告gameserver 有新的用户进入游戏
+	GST_ID_NEW_PLAYER_ENTER_GAME_ACK								= 2006;   //gameserver 建立好 新用户（如果有重复登录，把前一个踢下线）,告诉gate server
+	GST_ID_PLAYER_LEAVE_GAME_RPT										= 2007;   //当client 与 gate server 断开网络连接，gate server 向gameserver 报告 client 离开游戏
+	GST_ID_KICK_OUT_PLAYER_RPT											= 2008;	  //gameserver 向 gateserver 报告，让目标下线(断开连接)
+	GST_ID_HEART_PING																= 2009;  //心跳ping
+	GST_ID_HEART_ACK																= 2010;  //心跳应答
+	GST_ID_RAND_CHECK_REQ														= 2011;
+	GST_ID_RAND_CHECK_ACK														= 2012;
+	GST_ID_SWITCH_GS_REQ           									= 2013; // 玩家切换游戏服务器
+	GST_ID_SWITCH_GS_ACK           									= 2014; // 玩家切换游戏服务器
+	GST_ID_GATE_RE_LOGIN_REQ												= 2016; //gate 向game发重新登录请求
+	GST_ID_GATE_RE_LOGIN_ACK												= 2017;
+	GST_ID_GateCloseNtf						    							= 2018; //gs0告诉gate 关闭
+	GST_ID_login_gt_req															= 2019; 
+	GST_ID_login_gt_ack															= 2020; 
+	GST_ID_client_number_rpt												= 2021; // gate 定时向 gs 报告当前client 连接的数量
+	GST_ID_client_login_gate_time_out_rpt						= 2022; // 将要进入 gate 的client登入超时, gt 告诉 gs, 让 gs 做超时处理
+	/////////////////////////////////////END= 2500
+	
+	// LDB 表示 loginserver 与 dbserver 通信			协议id范围[2501, 3000]
+	/////////////////////////////////////BEGIN LDB
+	LDB_ID_LOGINSERVER_REPORT												= 2501;
+	LDB_ID_USER_CHECK_IN_DBSERVER_REQ								= 2502;
+	LDB_ID_USER_CHECK_IN_DBSERVER_ACK								= 2503;
+	LDB_ID_HEART_PING																= 2504;  //心跳ping
+	LDB_ID_HEART_ACK																= 2505;  //心跳应答
+	LDB_ID_RAND_CHECK_REQ														= 2506;
+	LDB_ID_RAND_CHECK_ACK														= 2507;
+	LDB_ID_GM_LIST_RPT															= 2508;  //login server 向 dbserver 报告 gmlist
+	LDB_ID_MAX_ONLINE_NUMBER_RPT  									= 2509;  //dbserver 实时 上 loginserver 报告本区能容纳的人数
+	LDB_ID_DBS_REPORT             									= 2510; //dbs 向 lgs 报告服务器消息
+	LDB_ID_GetGM_LIST_REQ			  										= 2511;//向login获得GM列表
+	LDB_ID_GetGM_LIST_ACK			  										= 2512;//向login获得GM列表
+	LDB_ID_LoginServerCloseNtf											= 2513; // dbsserver 告诉 loginserver 关闭
+	LDB_ID_PlayerGetBaseDataComplete 								= 2514; // dbserver 告诉 loginserver , 一个玩家的基本登陆数据已经发送给gs 完毕
+	LDB_ID_ClientCloseWhenWaitCheckInDB 						= 2515; // 一个正等待 dbserver 校验返回的 client 断开, 需要立即告诉dbserver
+	LDB_ID_get_login_key_req 												= 2516; //dbs 转达了一个获取 登陆key的请求
+	LDB_ID_get_login_key_ack 												= 2517; // 返回key
+	/////////////////////////////////////END= 3000
+	
+		
+	// GGS 表示 gameserver 与 gameserver 通信
+	///////////////////////////////////BEGIN GGS
+	/////////////////////////////////////END= 3500
+	
+	// NDS 表示 nameserver 与 dbserver 通信
+	///////////////////////////////////BEGIN GGS
+	NDS_ID_DBSERVER_REPORT                                      = 3501;
+	NDS_ID_HEART_PING                                           = 3502;  //心跳ping
+	NDS_ID_HEART_ACK                                            = 3503;  //心跳应答
+	NDS_ID_RAND_CHECK_REQ                                       = 3504;
+	NDS_ID_RAND_CHECK_ACK                                       = 3505;
+	NDS_ID_CHECK_NEW_NAME_REQ                                   = 3506;
+	NDS_ID_CHECK_NEW_NAME_AKC                                   = 3507;
+	NDS_ID_NAMESERVER_REPORT                                    = 3508;
+	NDS_ID_GameImportLogRpt                                     = 3509;
+	NDS_ID_GetUniqueIDReq                                       = 3510;
+	NDS_ID_GetUniqueIDAck                                       = 3520;
+	
+	NDS_ID_2_NS_RAND_CHECK_REQ                                  = 3521;
+	NDS_ID_2_NS_RAND_CHECK_ACK                                  = 3522;
+	
+	NDS_ID_ChongZhiNtf                                          = 3523;
+	NDS_ID_TXRecordNtf                                          = 3524;
+	NDS_ID_TXAwardsNtf                                          = 3525;
+	NDS_ID_tx_jiao_yi_suo_yu_kou_cheng_gong                     = 3526;
+	NDS_ID_tx_fa_huo_suo_ding_cheng_gong                        = 3527;
+	NDS_ID_tx_ping_tai_kou_fei_error                            = 3528; 
+	NDS_ID_report_online_number                                 = 3529; 
+	NDS_ID_GameServerMessageTransNtf                            = 3530;
+	/////////////////////////////////////END= 4000
+	
+	
+	///////////////////////////////////BEGIN GDS
+	GDS_ID_GAME_SERVER_RPT							= 4001;  //gameserver 向 dbserver 报告gameserver的基本信息
+	GDS_ID_DB_SERVER_RPT								= 4002;  //dbserver 向 gameserver 报告dbserver的基本信息
+	/////////////////////////////////////END= 5000
+	
+	
+	///////////////////////////////////BEGIN GSC
+	//GSC_ID_TEST_REQ									= 5001;
+	//GSC_ID_TEST_ACK									= 5002;
+	//GSC_ID_LEAVE_GAME_REQ						= 5003;
+	//GSC_ID_LEAVE_GAME_ACK						= 5004;
+	/////////////////////////////////////END= 8000
+	ALL_MAX_PROTOC_ID = 8000;
+	
+}
+
+
+
+

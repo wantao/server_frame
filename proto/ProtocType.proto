@@ -1,0 +1,314 @@
+package protoc;
+
+enum ProtocType {
+
+///////////////////////////////////BEGIN LGC
+    ClientLoginReq                          = 1;    //客户端登录请求
+    ClientLoginAck                          = 2;     //返回登录结果
+    ClientCreateAccountReq                  = 3;//创建帐号
+    ClientCreateAccountAck                  = 4;//创建结果返回
+    ClientWebLoginReq                       = 5; //通过校验session key 登录协议
+    AccountAllPlayerInfoRpt                 = 6; // 如果该帐号有多个角色,则服务器会返回这多个角色信息
+    SelectActivePlayer                      = 7; //把玩家选择的角色id 返回给服务器
+    WaitingLoinNtf                          = 8; //进入排队登陆,返回排队情况
+    SelfModeCreatekAccountReq               = 9; //在限号登录模式下, 使用激活码注册帐号
+    SelfModeCreatekAccountAck               = 10;//返回注册结果
+    SelfModeActiveAccountReq                = 11;//在限号登录模式下, 使用激活码,激活已有帐号
+    SelfModeActiveAccountAck                = 12;//返回激活结果
+    
+/////////////////////////////////////END= 500
+
+    ///////////////////////////////////BEGIN GTC 1001
+    ClientLoginGateReq                      = 1001;  //客户端登录gate请求
+    ClientLoginGateAck                      = 1002;  //返回登录结果
+    ClientLoginAgainGateReq                 = 1003; //重新登录客户（断线重连）
+    ClientLoginAgainGateAck                 = 1004; //重新登录客户（断线重连）
+    /////////////////////////////////////END= 1500
+
+    ///////////////////////////////////BEGIN GSC 5001
+    TestReq                                 = 5001;
+    TestAck                                 = 5002;
+    ClientLeaveGameReq                      = 5003;
+    ClientLeaveGameAck                      = 5004;
+    
+    PlayerBaseData                          = 5005; //玩家基本数据
+    PlayerPackage                           = 5006; //玩家卡包数据
+    
+    ChatRpt                                 = 5007; //发送聊天信息
+    GMExecuteResult                         = 5008; //执行GM命令的结果
+    SystemMessage                           = 5009; //系统消息
+    PythonMessage                           = 5010; //python 主协议
+    NeedCreatePlayerName                    = 5011; //服务器告诉client，玩家需要创建自己个性化名称
+    CreatePlayerNameReq                     = 5012; //创建个性化名称和选择头像
+    CreatePlayerNameAck                     = 5013; //创建名称和选择头像返回
+
+  
+  CommonDialog                              = 5014; //通用对话窗口协议
+  GetGMAward                                = 5015; //领取GM发送奖励
+  ChatNtf                                   = 5016; //服务器把目标的聊天消息通知给其他人
+  GetKeyAwardReq                            = 5017; //通过校验码领取奖励
+  GetKeyAwardAck                            = 5018;
+  TeXiaoTypeNtf                             = 5019;//通知特效效果
+  
+  GetServerCurrentTimeReq                   = 5020;//得到服务器当前系统时间
+  GetServerCurrentTimeAck                   = 5021;//得到服务器当前系统时间
+  
+  PostTrasnFileReq                          = 5022; //请求传送文件
+  PostTrasnFileAck                          = 5023; //返回
+  TrasnFileRpt                              = 5024; //客户端传输文件
+  TransFileCompleteRpt                      = 5025; //传输文件结束
+  UpdateGold                                = 5026;//更新金币
+  UpdateExp                                 = 5027;//更新经验
+  UpdateLevel                               = 5028;//更新等级
+  UpdateYuanBao                             = 5029;//更新元宝
+  
+  AddPet                                    = 5030;//增加一个宠物
+  DelPet                                    = 5031;//删除一个宠物
+  UpdatePet                                 = 5032;//修改一个宠物的数据
+  PetList                                   = 5033;//宠物列表
+  
+  GetAllSysMsgReq                           = 5034; //发送读取全部消息
+  GetAllSysMsgAck                           = 5035;//发送读取全部消息
+  DeleteSysMsgReq                           = 5036;//删除邮件
+  DeleteSysMsgAck                           = 5037;//删除邮件
+  SendSysMsgReq                             = 5038;//发送邮件
+  SendSysMsgAck                             = 5039;//发送邮件
+  ReadSysMsgReq                             = 5040;//读取邮件
+  ReadSysMsgAck                             = 5041;//读取邮件
+  GetEmailAwardReq                          = 5042;//领取邮件奖励
+  GetEmailAwardAck                          = 5043;//领取邮件奖励
+  EmailMessageNtf                           = 5044;//新的邮件通知
+  
+  KeepClientAliveAck                        = 5045; //客户端心跳返回
+  KeepClientAlive                           = 5046; //心跳触发
+  
+  ProtectPetReq                             = 5047;//保护宠物
+  ProtectPetAck                             = 5048;//保护宠物
+  SellPetToSysReq                           = 5049;//卖宠物给系统
+  SellPetToSysAck                           = 5050;//卖宠物给系统
+  
+  BianDuiList                               = 5051;//所有编队数据
+  SetCurBianDuiReq                          = 5052;//设置当前竞技编队
+  SetCurBianDuiAck                          = 5053;//设置当前竞技编队
+  AddPetToBianDuiReq                        = 5054;//增加宠物到编队
+  AddPetToBianDuiAck                        = 5055;//增加宠物到编队
+  DelPetToBianDuiReq                        = 5056;//从编队撤下一个宠物
+  DelPetToBianDuiAck                        = 5057;//从编队撤下一个宠物
+  ModifyBianDuiNameReq                      = 5058;//修改编队名字
+  ModifyBianDuiNameAck                      = 5059;//修改编队名字
+  ModifyBIanDuiDataReq                      = 5060; //编队位置变更
+  ModifyBIanDuiDataAck                      = 5061; //编队位置变更
+  BianDuiNtf                                = 5063;//编队更新
+  AddBianDui                                = 5064;//增加新编队
+  UpdateCurBianDuiIdx                       = 5065;//更新当前编队号
+  AddPetMaxNumberReq                        = 5066; //增加宠物上限
+  AddPetMaxNumberAck                        = 5067; //增加宠物上限
+  AddQueueMaxNumberReq                      = 5068; //增加竞技编队上限
+  AddQueueMaxNumberAck                      = 5069; //增加竞技编队上限
+  PetMaxNumberNtf                           = 5070; //更新宠物上限
+  
+  RecoverActiveCountReq                     = 5071; //恢复体力
+  RecoverActiveCountAck                     = 5072; //恢复体力
+  ActiveCountNtf                            = 5073; //更新行动力
+  SpiritNtf                                 = 5074; //更新精神力
+  UpdateHp                                  = 5075; //更新hp
+  UpdateMp                                  = 5076; //更新mp
+  
+  GetShopListReq                            = 5077; // 取得商店列表
+  GetShopListAck                            = 5078; //取得商店列表
+  ShoppingReq                               = 5079; //购买使用商品
+  ShoppingAck                               = 5080; //购买使用商品
+  
+  UpdateVIPLevel                            = 5081; //更新VIP等级
+  UpdateFriendShip                          = 5082; //更新玩家友情点
+  
+  ChongZhiOrderNtf                          = 5083; //充值后订单信息                              
+  
+  GetChapterReq                             = 5084; // 读取玩家所有通关关卡的信息
+  GetChapterAck                             = 5085; // 返回
+  
+  UpdateCheckPointNtf                       = 5086; // 更新某一章里某一关卡的信息(有可能是新增的)
+  
+  GetCheckPointRankReq                      = 5087; // 读取本关卡的好友排名
+  GetCheckPointRankAck                      = 5088; // 返回
+  
+  GetFriendArmsReq                          = 5089; // 读取当前作战伙伴列表
+  GetFriendArmsAck                          = 5090; // 返回
+  
+  BeginWarReq                               = 5091; // 客户端请求获得进入战斗的数据
+  BeginWarAck                               = 5092; // 返回
+  
+  WarResultReq                              = 5093; // 客户端报告战斗结果: 胜负
+  WarResultAck                              = 5094; // 返回
+
+  FriendList                                = 5095; //好友列表
+  UpdateFriend                              = 5096; //更新好友数据 
+  DelFriendReq                              = 5097; //删除一个好友
+  DelFriendAck                              = 5098; //删除一个好友
+  DelFriendNtf                              = 5099; //删除一个好友通知
+  VisitFriendReq                            = 5100; //拜访好友
+  VisitFriendAck                            = 5101; //拜访好友
+  
+  GetAskFriendReq                           = 5102; //获得申请好友列表
+  GetAskFriendAck                           = 5103; //获得申请好友列表
+  SearchPlayerReq                           = 5104; //搜索一个玩家
+  SearchPlayerAck                           = 5105; //搜索一个玩家
+  AskFriendReq                              = 5106; //申请加好友
+  AskFriendAck                              = 5107; //申请加好友
+  AddAskFriendNtf                           = 5108; //好友申请通知
+  ReplyAskReq                               = 5109; //回复申请
+  ReplyAskAck                               = 5110; //回复申请
+  NewAskFriendNtf                           = 5111; //新的申请通知
+  
+  SetAskFriendStateReq                      = 5112; //设置是否可以加我为好友
+  SetAskFriendStateAck                      = 5113; //设置是否可以加我为好友
+
+  BuffItemListReq                           = 5114; // 客户端请求Buff道具列表
+  BuffItemListAck                           = 5115; // 返回
+  
+  BuffItemBuyReq                            = 5116; // 客户端请求购买Buff道具
+
+  RandomItemListReq                         = 5117; // 客户端请求随机Buff道具列表
+  RandomItemListAck                         = 5118; // 返回
+
+  RandomItemBuyReq                          = 5119; // 客户端请求购买随机Buff道具
+  
+  PetUpgradeReq                             = 5120; //宠物升级
+  PetUpgradeAck                             = 5121; //宠物升级
+  PetEvolveReq                              = 5122; //宠物进化
+  PetEvolveAck                              = 5123; //宠物进化
+  
+  OwnedPetIDListReq                         = 5124; //获取已拥有宠物ID列表
+  OwnedPetIDListAck                         = 5125; //返回
+  
+  SelectCheckPointReq                       = 5126; //选择战斗关卡
+  SelectCheckPointAck                       = 5127; //选择战斗关卡
+  
+  NewPetOpenedNtf                           = 5128; //获得未开启的宠物通知
+  
+  GetChenJiuReq                             = 5129; //得到成就(触发的)
+  GetChenJiuAck                             = 5130;
+  UpdateChenJiu                             = 5131;//更新一个触发成就
+  GetChenJiuAwardReq                        = 5135;//得到成就奖励
+  GetChenJiuAwardAck                        = 5136;
+  
+  DeadInWarNtf                              = 5137; //在战斗中,主角阵亡的通知
+  ReviveReq                                 = 5138; //购买复活
+  ReviveAck                                 = 5139; //购买复活返回
+  
+  GetQuestListReq                           = 5140; //获取任务信息请求
+  GetQuestListAck                           = 5141;
+  UpdateQuestNtf                            = 5142; //更新任务信息
+  
+  GetQuestAwardReq                          = 5143; //获取任务奖励请求
+  GetQuestAwardAck                          = 5144; 
+
+  RefreshQuestNtf                           = 5145; //任务刷新
+  
+  DeadInWarAck                              = 5146; //返回复活需要多少宝石
+  
+  GetCurPvpDataReq                          = 5147; //得到当前自己的pvp数据
+  GetCurPvpDataAck                          = 5148; //得到当前自己的pvp数据
+  GetAllRankReq                             = 5149; //得到全部的排名,当前组
+  GetAllRankAck                             = 5150; //得到全部的排名
+  GetFriendRankReq                          = 5151; //得到好友的排名
+  GetFriendRankAck                          = 5152; //得到好友的排名
+  GetSumRankReq                             = 5153; //得到总的排名,所有组
+  GetSumRankAck                             = 5154; //得到总的排名
+  ClearPvpCDReq                             = 5155; //清除pvpCD时间
+  ClearPvpCDAck                             = 5156; //清除pvpCD时间
+  GetPvpAwardReq                            = 5157; //得到pvp奖励
+  GetPvpAwardAck                            = 5158; //得到pvp奖励
+  PvpWarBeginReq                            = 5159; //pvp战斗开始
+  PvpWarBeginAck                            = 5160; //pvp战斗开始
+  PvpWarResultReq                           = 5161; //pvp战斗结果
+  PvpWarResultAck                           = 5162; //pvp战斗结果
+  
+  ActionCountTickNtf                        = 5163; //更新行动力倒计时
+  
+  NowStartWarRpt                            = 5164; // 客户端告诉服务器现在开始战斗了
+
+  CustomerServiceUrlNtf                     = 5165; //用户上线时，发送客服系统的url
+
+  NewQuestMessageNtf                        = 5166; //
+
+  GetSkillListReq                           = 5167; //获取技能列表
+  GetSkillListAck                           = 5168;
+  //ResetSkillListReq                         = 5169; //重置技能
+  //ResetSkillListAck                         = 5170;
+  SaveSkillPageReq                          = 5171; //保存技能（天赋）页
+  SaveSkillPageAck                          = 5172; 
+  SaveActiveSkillReq                        = 5173; //保存选择的主动技能
+  SaveActiveSkillAck                        = 5174;
+  
+  SysErrorNtf                               = 5175; //通知系统错误消息
+  
+  EquipList                                 = 5176; //装备列表
+  AddEquip                                  = 5177; //增加一个装备
+  DelEquip                                  = 5178; //删除一个装备
+  UpdateEquip                               = 5179; //更新一个装备
+  
+  GoodsList                                 = 5180; //物品列表
+  AddGoodsItem                              = 5181; //增加 一打 物品
+  UpdateGoodsNumber                         = 5182; //修改 一打 物品的数量
+  
+  PutOnEquipReq                             = 5183; //穿上装备
+  PutOnEquipAck                             = 5184; //穿上装备
+  StrengEquipReq                            = 5185; //强化装备
+  StrengEquipAck                            = 5186; //强化装备
+  JinJieEquipReq                            = 5187; //进阶装备
+  JinJieEquipAck                            = 5188; //进阶装备
+  HeChengEquipReq                           = 5189; //合成物品
+  HeChengEquipAck                           = 5190; //合成物品
+  SellGoodsReq                              = 5191; //出售物品
+  SellGoodsAck                              = 5192; //出售物品
+  EquipSetStoreReq                          = 5193; //装备镶嵌宝石
+  EquipSetStoreAck                          = 5194; //装备镶嵌宝石
+  
+  ShareDataNtf                              = 5195; //分享数据通知
+  
+  CompleteLoadDataNtf                       = 5196; //上线完成数据加载
+  
+  SetPetNewStateReq                         = 5197; //设置宠物查看状态
+  SetPetNewStateAck                         = 5198; //设置宠物查看状态
+  
+  UpdateBuyActionCounts                     = 5199; //更新今日购买行动力次数
+  OneKeyGetEmailAwardReq                    = 5200; //一键领取邮件奖励
+  OneKeyGetQuestAwardReq                    = 5201; //一键领取任务奖励
+  OneKeyGetChenJiuAwardReq                  = 5202; //一键领取成就奖励 
+  
+  SubBianDuiReq                             = 5203; //提交一个编队(用于自动分配编队)
+  SubBianDuiAck                             = 5204; //提交一个编队
+  
+  AddActiveChapterNtf                       = 5205; //新增的可以打的章
+  ChaptersLoseActivityNtf                   = 5206; //关卡掉落活动通知
+
+  /////////////////////////////////////END= 8000
+}
+
+
+// gamserve 与 gameserver 之间的通信ID 定义
+enum GSMsgType {
+  GSChatNtf                                 = 1; //聊天消息广播给其他服务器
+  GSSystemMessageNtf                        = 2; //广播系统消息
+}
+
+
+// python 子协议
+enum PythonMsgType {
+	PythonMsg_example                       = 1; //测试例子
+	PyTalkDialog                            = 2; //返回一个任务对话窗口的元素集合
+	PyChouKaReq                             = 3; // 抽卡请求
+	PyChouKaAck                             = 4; // 抽卡返回
+	PyGetGenGaoReq                          = 5;//得到系统公告
+    PyGetGenGaoAck                          = 6;//得到系统公告
+	PyGetGoodActivePanelReq                 = 7; //读取精彩活动面板内容
+	PyGetGoodActivePanelAck                 = 8; //返回精彩活动面板的内容
+	PyGetActiveAwardReq                     = 9; //获得活动奖励
+	PyGetActiveAwardAck                     = 10; //获得活动奖励
+	PyEveryDataActiveNtf                    = 11; //每日活动通知
+	PySaveGuideStepReq                      = 12; //保存新手引导步骤
+	PySaveGuideStepAck                      = 13; //新手引导步骤保存返回
+	PyBuyCheckPointChallengeCountReq        = 14; //精英关卡购买挑战次数请求
+	PyBuyCheckPointChallengeCountAck        = 15; //精英关卡购买挑战次数返回
+}

@@ -1,0 +1,123 @@
+package protoc.nsdb;
+
+message CDBServerInfoRpt
+{
+	optional string id=1; 	
+	optional string name=2; 
+}
+
+message CNameServerInfoRpt
+{
+	optional string id=1; 	
+	optional string name=2; 
+}
+
+message CRandCheckReq
+{
+	optional bytes   randkeys=1;
+}
+
+message CRandCheckAck
+{
+	optional bytes   keys=1;
+}
+
+message CHeartPing
+{
+	optional int32 		opt=1;
+}
+
+message CHeartPingAck
+{
+	optional int32 		opt=1;
+}
+
+message CheckNewNameReq
+{
+  optional uint64 	  digit_account=1;    //游戏唯一通行证
+  optional string     newname=2;
+  optional uint32     head_pic_id=3;
+  optional string     gameserverid=4;
+  optional bool       sex=5;//性别
+}
+
+message CheckNewNameAck
+{
+  optional uint64 	digit_account=1;    //游戏唯一通行证
+  optional string   newname=2;
+  optional uint32   head_pic_id=3;
+  optional int32    error_no=4;
+  optional string   gameserverid=5;
+  optional bool     sex=6;//性别
+}
+
+// db 请求 唯一id
+message GetUniqueIDReq
+{
+  optional string     dbserverid=1;
+  optional string     gameserverid=2;
+  optional uint32     number=3;
+}
+
+// ns 返回 唯一id
+message GetUniqueIDAck
+{
+  optional string     dbserverid=1;
+  optional string     gameserverid=2;
+  optional uint64     begin_id=3;
+  optional uint64     end_id=4;
+}
+
+message ChongZhiPlayer
+{
+  optional uint64     transaction_id=1; //交易号
+  optional uint64     playerid=2; //玩家帐号
+}
+
+// ns 告诉dbs，你这个区 有 以下的玩家进行了新的充值
+message ChongZhiNtf
+{
+  optional uint32         area_no=1; //区号
+  repeated ChongZhiPlayer chongzhi_user=2; //充值的用户
+}
+
+
+// dbserver 定时报告本区人数给 nameserver
+message report_online_number
+{
+	optional int32  area_no=1; //区号
+	optional int32  total_number=2; //本区当时总在线人数
+}
+
+// gamserver 把重要记录信息发送到nameserver
+message GameImportLogRpt
+{
+  optional uint32  event_id=1;
+  optional uint32  aread_no=2;
+  optional uint32  server_kind=3;
+  optional uint32  server_no=4;
+  optional string  account=5;
+  optional uint64  playerid=6;
+  optional string  playername=7;
+  optional string  msg=8;
+}
+
+enum E_GS_TRANS_TYPE
+{
+    e_all=1;   //全部广播
+    e_except_sell=2; //除了发起者，其他都通知
+}
+
+// gamserver 之间通用传输协议
+message GameServerMessageTransNtf
+{
+  optional uint32           id=1;  // gs 之间 通信约定的id值
+  optional E_GS_TRANS_TYPE  trans_kind=2;  // 广播类型
+  optional bytes            msg=3; // gs 之间 通信约定的协议结构
+  optional string           target_gs=4; //发送给指定的服务器
+  optional uint32           area_id=5; //区号
+  optional string           area_name=6; //区名
+}
+
+
+
